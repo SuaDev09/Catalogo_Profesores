@@ -5,6 +5,7 @@
  */
 package mx.slp.DAO;
 
+import java.util.List;
 import mx.slp.persistencia.AbstractDAO;
 
 /**
@@ -18,4 +19,8 @@ public class UnidadAprendizajeDAO extends AbstractDAO{
         super.save(obj); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public List findAll() {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
 }
