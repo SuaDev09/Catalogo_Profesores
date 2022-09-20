@@ -3,8 +3,8 @@
   <persistence-unit name="mx.slp_entidad_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>mx.slp.entidad.Profesorimparteunidad</class>
-    <class>mx.slp.entidad.Unidadaprendizaje</class>
     <class>mx.slp.entidad.Profesor</class>
+    <class>mx.slp.entidad.UnidadAprendizaje</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/catalogo_profesores?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

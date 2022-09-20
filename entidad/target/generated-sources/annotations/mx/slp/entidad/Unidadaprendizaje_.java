@@ -6,16 +6,16 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import mx.slp.entidad.Profesorimparteunidad;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-09-19T14:30:00")
-@StaticMetamodel(Unidadaprendizaje.class)
-public class Unidadaprendizaje_ { 
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-09-20T15:51:31")
+@StaticMetamodel(UnidadAprendizaje.class)
+public class UnidadAprendizaje_ { 
 
-    public static volatile SingularAttribute<Unidadaprendizaje, String> idUnidadAprendizaje;
-    public static volatile SingularAttribute<Unidadaprendizaje, Integer> horasLaboratorio;
-    public static volatile SingularAttribute<Unidadaprendizaje, Integer> horasClase;
-    public static volatile ListAttribute<Unidadaprendizaje, Profesorimparteunidad> profesorimparteunidadList;
-    public static volatile SingularAttribute<Unidadaprendizaje, Integer> id;
-    public static volatile SingularAttribute<Unidadaprendizaje, String> nombre;
-    public static volatile SingularAttribute<Unidadaprendizaje, Integer> horasTaller;
+    public static volatile SingularAttribute<UnidadAprendizaje, Integer> idUnidadAprendizaje;
+    public static volatile SingularAttribute<UnidadAprendizaje, Integer> horasLaboratorio;
+    public static volatile SingularAttribute<UnidadAprendizaje, Integer> idUA;
+    public static volatile SingularAttribute<UnidadAprendizaje, Integer> horasClase;
+    public static volatile ListAttribute<UnidadAprendizaje, Profesorimparteunidad> profesorimparteunidadList;
+    public static volatile SingularAttribute<UnidadAprendizaje, String> nombre;
+    public static volatile SingularAttribute<UnidadAprendizaje, Integer> horasTaller;
 
 }

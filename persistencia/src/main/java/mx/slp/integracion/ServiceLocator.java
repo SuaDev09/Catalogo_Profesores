@@ -5,11 +5,32 @@
  */
 package mx.slp.integracion;
 
+import mx.slp.DAO.*;
+
 /**
  *
  * @author ghots
  */
 
 public class ServiceLocator {
+    private static ProfesorDAO profesorDAO;
+    private static UnidadAprendizajeDAO unidadAprendizajeDAO;
     
+    public static ProfesorDAO getInstacenProfesorDAO(){
+        if(profesorDAO == null){
+            profesorDAO = new ProfesorDAO();
+            return profesorDAO;
+        } else{
+            return profesorDAO;
+        }
+    }
+    
+    public static UnidadAprendizajeDAO getInstacenUnidadAprendizajeDAO(){
+        if(unidadAprendizajeDAO == null){
+            unidadAprendizajeDAO = new UnidadAprendizajeDAO();
+            return unidadAprendizajeDAO;
+        } else{
+            return unidadAprendizajeDAO;
+        }
+    }
 }
