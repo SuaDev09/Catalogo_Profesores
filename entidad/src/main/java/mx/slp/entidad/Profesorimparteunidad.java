@@ -35,14 +35,14 @@ public class Profesorimparteunidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idProfesorImparteUnidad")
+    @Column(name = "IdProfesorImparteUnidad")
     private Integer idProfesorImparteUnidad;
-    @JoinColumn(name = "idProfesor", referencedColumnName = "id")
+    @JoinColumn(name = "IdProfesor", referencedColumnName = "IdP")
     @ManyToOne(optional = false)
-    private Profesor idProfesor;
-    @JoinColumn(name = "idUnidadAprendizaje", referencedColumnName = "id")
+    private Profesor idP;
+    @JoinColumn(name = "IdUnidadAprendizaje", referencedColumnName = "IdUA")
     @ManyToOne(optional = false)
-    private Unidadaprendizaje idUnidadAprendizaje;
+    private Unidadaprendizaje idUA;
 
     public Profesorimparteunidad() {
     }
@@ -60,19 +60,19 @@ public class Profesorimparteunidad implements Serializable {
     }
 
     public Profesor getIdProfesor() {
-        return idProfesor;
+        return idP;
     }
 
-    public void setIdProfesor(Profesor idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setIdProfesor(Profesor idP) {
+        this.idP = idP;
     }
 
     public Unidadaprendizaje getIdUnidadAprendizaje() {
-        return idUnidadAprendizaje;
+        return idUA;
     }
 
-    public void setIdUnidadAprendizaje(Unidadaprendizaje idUnidadAprendizaje) {
-        this.idUnidadAprendizaje = idUnidadAprendizaje;
+    public void setIdUnidadAprendizaje(Unidadaprendizaje idUA) {
+        this.idUA = idUA;
     }
 
     @Override

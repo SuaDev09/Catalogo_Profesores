@@ -42,10 +42,10 @@ public class Profesor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "IdP")
+    private Integer idP;
     @Basic(optional = false)
-    @Column(name = "idProfesor")
+    @Column(name = "IdProfesor")
     private int idProfesor;
     @Basic(optional = false)
     @Column(name = "Nombre")
@@ -65,12 +65,12 @@ public class Profesor implements Serializable {
     public Profesor() {
     }
 
-    public Profesor(Integer id) {
-        this.id = id;
+    public Profesor(Integer idP) {
+        this.idP = idP;
     }
 
-    public Profesor(Integer id, int idProfesor, String nombre, String apellidoPaterno, String apellidoMaterno, String rfc) {
-        this.id = id;
+    public Profesor(Integer idP, int idProfesor, String nombre, String apellidoPaterno, String apellidoMaterno, String rfc) {
+        this.idP = idP;
         this.idProfesor = idProfesor;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -79,11 +79,11 @@ public class Profesor implements Serializable {
     }
 
     public Integer getId() {
-        return id;
+        return idP;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idP) {
+        this.idP = idP;
     }
 
     public int getIdProfesor() {
@@ -138,7 +138,7 @@ public class Profesor implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idP != null ? idP.hashCode() : 0);
         return hash;
     }
 
@@ -149,7 +149,7 @@ public class Profesor implements Serializable {
             return false;
         }
         Profesor other = (Profesor) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idP == null && other.idP != null) || (this.idP != null && !this.idP.equals(other.idP))) {
             return false;
         }
         return true;
@@ -157,7 +157,7 @@ public class Profesor implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.slp.entidad.Profesor[ id=" + id + " ]";
+        return "mx.slp.entidad.Profesor[ id=" + idP + " ]";
     }
     
 }

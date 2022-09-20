@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Unidadaprendizaje.findAll", query = "SELECT u FROM Unidadaprendizaje u")
-    , @NamedQuery(name = "Unidadaprendizaje.findById", query = "SELECT u FROM Unidadaprendizaje u WHERE u.id = :id")
+    , @NamedQuery(name = "Unidadaprendizaje.findById", query = "SELECT u FROM Unidadaprendizaje u WHERE u.idUA = :idUA")
     , @NamedQuery(name = "Unidadaprendizaje.findByIdUnidadAprendizaje", query = "SELECT u FROM Unidadaprendizaje u WHERE u.idUnidadAprendizaje = :idUnidadAprendizaje")
     , @NamedQuery(name = "Unidadaprendizaje.findByNombre", query = "SELECT u FROM Unidadaprendizaje u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Unidadaprendizaje.findByHorasClase", query = "SELECT u FROM Unidadaprendizaje u WHERE u.horasClase = :horasClase")
@@ -42,10 +42,10 @@ public class Unidadaprendizaje implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "IdUA")
+    private Integer idUA;
     @Basic(optional = false)
-    @Column(name = "idUnidadAprendizaje")
+    @Column(name = "IdUnidadAprendizaje")
     private Integer idUnidadAprendizaje;
     @Basic(optional = false)
     @Column(name = "Nombre")
@@ -65,12 +65,12 @@ public class Unidadaprendizaje implements Serializable {
     public Unidadaprendizaje() {
     }
 
-    public Unidadaprendizaje(Integer id) {
-        this.id = id;
+    public Unidadaprendizaje(Integer idUA) {
+        this.idUA = idUA;
     }
 
-    public Unidadaprendizaje(Integer id, Integer idUnidadAprendizaje, String nombre, int horasClase, int horasTaller, int horasLaboratorio) {
-        this.id = id;
+    public Unidadaprendizaje(Integer idUA, Integer idUnidadAprendizaje, String nombre, int horasClase, int horasTaller, int horasLaboratorio) {
+        this.idUA = idUA;
         this.idUnidadAprendizaje = idUnidadAprendizaje;
         this.nombre = nombre;
         this.horasClase = horasClase;
@@ -78,12 +78,12 @@ public class Unidadaprendizaje implements Serializable {
         this.horasLaboratorio = horasLaboratorio;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdUA() {
+        return idUA;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdUA(Integer idUA) {
+        this.idUA = idUA;
     }
 
     public Integer getIdUnidadAprendizaje() {
@@ -138,7 +138,7 @@ public class Unidadaprendizaje implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idUA != null ? idUA.hashCode() : 0);
         return hash;
     }
 
@@ -149,7 +149,7 @@ public class Unidadaprendizaje implements Serializable {
             return false;
         }
         Unidadaprendizaje other = (Unidadaprendizaje) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idUA == null && other.idUA != null) || (this.idUA != null && !this.idUA.equals(other.idUA))) {
             return false;
         }
         return true;
@@ -157,7 +157,7 @@ public class Unidadaprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.slp.entidad.Unidadaprendizaje[ id=" + id + " ]";
+        return "mx.slp.entidad.Unidadaprendizaje[ id=" + idUA + " ]";
     }
     
 }
