@@ -46,7 +46,7 @@ public class Unidadaprendizaje implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @Column(name = "idUnidadAprendizaje")
-    private String idUnidadAprendizaje;
+    private Integer idUnidadAprendizaje;
     @Basic(optional = false)
     @Column(name = "Nombre")
     private String nombre;
@@ -69,7 +69,7 @@ public class Unidadaprendizaje implements Serializable {
         this.id = id;
     }
 
-    public Unidadaprendizaje(Integer id, String idUnidadAprendizaje, String nombre, int horasClase, int horasTaller, int horasLaboratorio) {
+    public Unidadaprendizaje(Integer id, Integer idUnidadAprendizaje, String nombre, int horasClase, int horasTaller, int horasLaboratorio) {
         this.id = id;
         this.idUnidadAprendizaje = idUnidadAprendizaje;
         this.nombre = nombre;
@@ -86,11 +86,11 @@ public class Unidadaprendizaje implements Serializable {
         this.id = id;
     }
 
-    public String getIdUnidadAprendizaje() {
+    public Integer getIdUnidadAprendizaje() {
         return idUnidadAprendizaje;
     }
 
-    public void setIdUnidadAprendizaje(String idUnidadAprendizaje) {
+    public void setIdUnidadAprendizaje(Integer idUnidadAprendizaje) {
         this.idUnidadAprendizaje = idUnidadAprendizaje;
     }
 
