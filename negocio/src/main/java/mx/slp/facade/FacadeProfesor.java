@@ -5,10 +5,21 @@
  */
 package mx.slp.facade;
 
+import mx.slp.delegate.DelegateProfesor;
+import mx.slp.entidad.Profesor;
+
 /**
  *
  * @author ghots
  */
 public class FacadeProfesor {
+    public final DelegateProfesor delegateProfesor;
     
+    public FacadeProfesor(){
+        this.delegateProfesor = new DelegateProfesor();
+    }
+    
+    public void guardarProfesor(Profesor profesor){
+        delegateProfesor.saveProfesor(profesor);
+    }
 }

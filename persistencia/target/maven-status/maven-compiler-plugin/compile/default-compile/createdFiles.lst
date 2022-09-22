@@ -1,6 +1,7 @@
 mx\slp\DAO\ProfesorDAO.class
 mx\slp\persistencia\AbstractDAO.class
 mx\slp\integracion\ServiceLocator.class
+mx\slp\DAO\ProfesorimparteunidadDAO.class
 mx\slp\DAO\UnidadaprendizajeDAO.class
 mx\slp\persistencia\InterfaceDAO.class
 mx\slp\persistencia\HibernateUtil.class

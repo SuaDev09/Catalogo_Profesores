@@ -5,10 +5,26 @@
  */
 package mx.slp.facade;
 
+import java.util.List;
+import mx.slp.delegate.DelegateUnidadaprendizaje;
+import mx.slp.entidad.Unidadaprendizaje;
+
 /**
  *
  * @author ghots
  */
 public class FacadeUnidadaprendizaje {
+    private final DelegateUnidadaprendizaje delegateUnidad;
     
+    public FacadeUnidadaprendizaje(){
+        this.delegateUnidad = new DelegateUnidadaprendizaje();
+    }
+    
+    public void guardarUnidad(Unidadaprendizaje uA){
+        delegateUnidad.saveUnidad(uA);
+    }
+    
+    public List<Unidadaprendizaje> obtenerUnidades(){
+        return delegateUnidad.getUnidades();
+    }
 }

@@ -19,7 +19,7 @@ public class ServiceLocator {
     private static UnidadaprendizajeDAO unidadAprendizajeDAO;
     private static ProfesorimparteunidadDAO profesorImparteDAO;
     
-    public static ProfesorDAO getInstacenProfesorDAO(){
+    public static ProfesorDAO getInstaceProfesorDAO(){
         if(profesorDAO == null){
             profesorDAO = new ProfesorDAO();
             return profesorDAO;
@@ -28,7 +28,7 @@ public class ServiceLocator {
         }
     }
     
-    public static UnidadaprendizajeDAO getInstacenUnidadaprendizajeDAO(){
+    public static UnidadaprendizajeDAO getInstaceUnidadaprendizajeDAO(){
         if(unidadAprendizajeDAO == null){
             unidadAprendizajeDAO = new UnidadaprendizajeDAO();
             return unidadAprendizajeDAO;
@@ -37,7 +37,7 @@ public class ServiceLocator {
         }
     }
     
-    public static ProfesorimparteunidadDAO getInstacenprofesorImparteDAO(){
+    public static ProfesorimparteunidadDAO getInstaceProfesorImparteDAO(){
         if(profesorImparteDAO == null){
             profesorImparteDAO = new ProfesorimparteunidadDAO();
             return profesorImparteDAO;

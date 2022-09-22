@@ -5,10 +5,15 @@
  */
 package mx.slp.delegate;
 
+import mx.slp.entidad.Profesor;
+import mx.slp.integracion.ServiceLocator;
+
 /**
  *
  * @author ghots
  */
 public class DelegateProfesor {
-    
+    public void saveProfesor(Profesor profesor){
+        ServiceLocator.getInstaceProfesorDAO().save(profesor);
+    }
 }
