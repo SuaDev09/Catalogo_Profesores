@@ -25,3 +25,4 @@ public class UnidadaprendizajeDAO extends AbstractDAO<Integer, Unidadaprendizaje
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
     }
 }
+

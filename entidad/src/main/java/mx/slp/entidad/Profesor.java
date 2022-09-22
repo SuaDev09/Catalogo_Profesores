@@ -38,9 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Profesor.findByRfc", query = "SELECT p FROM Profesor p WHERE p.rfc = :rfc")})
 public class Profesor implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idP")
-    private List<Profesorimparteunidad> profesorimparteunidadList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +59,8 @@ public class Profesor implements Serializable {
     @Basic(optional = false)
     @Column(name = "RFC")
     private String rfc;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idP")
+    private List<Profesorimparteunidad> profesorimparteunidadList;
 
     public Profesor() {
     }
@@ -127,6 +126,15 @@ public class Profesor implements Serializable {
         this.rfc = rfc;
     }
 
+    @XmlTransient
+    public List<Profesorimparteunidad> getProfesorimparteunidadList() {
+        return profesorimparteunidadList;
+    }
+
+    public void setProfesorimparteunidadList(List<Profesorimparteunidad> profesorimparteunidadList) {
+        this.profesorimparteunidadList = profesorimparteunidadList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -150,15 +158,6 @@ public class Profesor implements Serializable {
     @Override
     public String toString() {
         return "mx.slp.entidad.Profesor[ idP=" + idP + " ]";
-    }
-
-    @XmlTransient
-    public List<Profesorimparteunidad> getProfesorimparteunidadList() {
-        return profesorimparteunidadList;
-    }
-
-    public void setProfesorimparteunidadList(List<Profesorimparteunidad> profesorimparteunidadList) {
-        this.profesorimparteunidadList = profesorimparteunidadList;
     }
     
 }
