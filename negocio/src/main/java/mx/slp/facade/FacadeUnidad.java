@@ -5,10 +5,21 @@
  */
 package mx.slp.facade;
 
+import mx.slp.delegate.DelegateUnidad;
+import mx.slp.entidad.UnidadAprendizaje;
+
 /**
  *
  * @author ghots
  */
 public class FacadeUnidad {
+    private final DelegateUnidad delegateUnidad;
     
+    public FacadeUnidad(){
+        this.delegateUnidad = new DelegateUnidad();
+    }
+    
+    public void saveUnidad(UnidadAprendizaje uA){
+        delegateUnidad.saveUnidadAprendizaje(uA);
+    }
 }

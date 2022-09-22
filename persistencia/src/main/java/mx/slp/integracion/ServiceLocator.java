@@ -5,7 +5,8 @@
  */
 package mx.slp.integracion;
 
-import mx.slp.DAO.*;
+import mx.slp.DAO.ProfesorDAO;
+import mx.slp.DAO.UnidadAprendizajeDAO;
 
 /**
  *

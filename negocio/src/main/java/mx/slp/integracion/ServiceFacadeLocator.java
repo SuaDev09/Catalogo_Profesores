@@ -22,7 +22,7 @@ public class ServiceFacadeLocator {
         }
     }
     
-    public static FacadeUnidad getInstanceFacadeUsuario() {
+    public static FacadeUnidad getInstanceFacadeUnidad() {
         if (facadeUnidad == null) {
             facadeUnidad = new FacadeUnidad();
             return facadeUnidad;

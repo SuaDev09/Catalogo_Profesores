@@ -5,6 +5,8 @@
  */
 package mx.slp.entidad;
 
+import mx.slp.entidad.Profesorimparteunidad;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;

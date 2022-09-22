@@ -6,21 +6,22 @@
 package mx.slp.DAO;
 
 import java.util.List;
+import mx.slp.entidad.UnidadAprendizaje;
 import mx.slp.persistencia.AbstractDAO;
 
 /**
  *
  * @author ghots
  */
-public class UnidadAprendizajeDAO extends AbstractDAO{
+public class UnidadAprendizajeDAO extends AbstractDAO<Integer, UnidadAprendizaje>{
 
     @Override
-    public void save(Object obj) {
+    public void save(UnidadAprendizaje obj) {
         super.save(obj); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
-    public List findAll() {
+    public List<UnidadAprendizaje> findAll() {
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -9,6 +9,24 @@ package test;
  *
  * @author ghots
  */
+import java.util.ArrayList;
+import java.util.List;
+import mx.slp.DAO.UnidadAprendizajeDAO;
+import mx.slp.entidad.UnidadAprendizaje;
+
+/**
+ *
+ * @author ghots
+ */
 public class test {
-    
+    public static void main(String[] args) {
+        
+        List<UnidadAprendizaje> listaUnidades = new ArrayList();
+        UnidadAprendizajeDAO unidadDAO = new UnidadAprendizajeDAO();
+        listaUnidades = unidadDAO.findAll();
+        
+        for(UnidadAprendizaje uA: listaUnidades){
+            System.out.println("Unidad id " + uA.getNombre());
+        }
+    }
 }

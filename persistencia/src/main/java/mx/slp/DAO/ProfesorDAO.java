@@ -6,13 +6,14 @@
 package mx.slp.DAO;
 
 import java.util.List;
+import mx.slp.entidad.Profesor;
 import mx.slp.persistencia.AbstractDAO;
 
 /**
  *
  * @author ghots
  */
-public class ProfesorDAO extends AbstractDAO{
+public class ProfesorDAO extends AbstractDAO<Integer, Profesor>{
 
     @Override
     public List findAll() {
@@ -20,17 +21,17 @@ public class ProfesorDAO extends AbstractDAO{
     }
 
     @Override
-    public void delete(Object obj) {
+    public void delete(Profesor obj) {
         super.delete(obj); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object obj) {
+    public void update(Profesor obj) {
         super.update(obj); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void save(Object obj) {
+    public void save(Profesor obj) {
         super.save(obj); //To change body of generated methods, choose Tools | Templates.
     }
     

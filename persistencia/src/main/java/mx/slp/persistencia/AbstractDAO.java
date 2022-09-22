@@ -16,7 +16,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import mx.slp.persistencia.InterfaceDAO;
 import java.util.List;
-//import mx.avanti.siract.dao.InterfaceDAO;
 import org.hibernate.SQLQuery;
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.transform.Transformers;

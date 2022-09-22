@@ -22,8 +22,8 @@ public class DelegateProfesor {
         ServiceLocator.getInstacenProfesorDAO().update(profesor);
     }
     
-    public void deleteProfesor(int id){
-        ServiceLocator.getInstacenProfesorDAO().delete(id);
+    public void deleteProfesor(Profesor profesor){
+        ServiceLocator.getInstacenProfesorDAO().delete(profesor);
     }
     
     public List<Profesor> getProfesores(){

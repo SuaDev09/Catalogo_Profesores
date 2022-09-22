@@ -5,6 +5,7 @@
  */
 package mx.slp.persistencia;
 
+import mx.slp.persistencia.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.ResourceClosedException;
 import org.hibernate.Session;
