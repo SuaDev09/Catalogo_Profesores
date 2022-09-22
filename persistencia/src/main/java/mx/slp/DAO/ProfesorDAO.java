@@ -35,6 +35,4 @@ public class ProfesorDAO extends AbstractDAO<Integer, Profesor>{
         super.save(obj); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
-    
 }

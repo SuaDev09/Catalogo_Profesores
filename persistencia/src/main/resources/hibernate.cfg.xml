@@ -24,7 +24,7 @@
     
     <mapping class="mx.slp.entidad.Profesor"/>
     <mapping class="mx.slp.entidad.Profesorimparteunidad"/>
-    <mapping class="mx.slp.entidad.UnidadAprendizaje"/>
+    <mapping class="mx.slp.entidad.Unidadaprendizaje"/>
   </session-factory>
 </hibernate-configuration>
 

@@ -6,7 +6,7 @@
 package mx.slp.delegate;
 
 import java.util.List;
-import mx.slp.entidad.UnidadAprendizaje;
+import mx.slp.entidad.Unidadaprendizaje;
 import mx.slp.integracion.ServiceLocator;
 
 /**
@@ -15,12 +15,12 @@ import mx.slp.integracion.ServiceLocator;
  */
 public class DelegateUnidad {
     
-    public void saveUnidadAprendizaje(UnidadAprendizaje uA){
-        ServiceLocator.getInstacenUnidadAprendizajeDAO().save(uA);
+    public void saveUnidadAprendizaje(Unidadaprendizaje uA){
+        ServiceLocator.getInstacenUnidadaprendizajeDAO().save(uA);
     }
 
-    public List<UnidadAprendizaje> getUnidades(){
-        return ServiceLocator.getInstacenUnidadAprendizajeDAO().findAll();
+    public List<Unidadaprendizaje> getUnidades(){
+        return ServiceLocator.getInstacenUnidadaprendizajeDAO().findAll();
     } 
     
 }

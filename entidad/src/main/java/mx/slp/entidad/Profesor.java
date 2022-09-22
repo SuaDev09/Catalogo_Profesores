@@ -5,8 +5,6 @@
  */
 package mx.slp.entidad;
 
-import mx.slp.entidad.Profesorimparteunidad;
-
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -32,13 +30,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profesor.findAll", query = "SELECT p FROM Profesor p")
-    , @NamedQuery(name = "Profesor.findById", query = "SELECT p FROM Profesor p WHERE p.id = :id")
+    , @NamedQuery(name = "Profesor.findByIdP", query = "SELECT p FROM Profesor p WHERE p.idP = :idP")
     , @NamedQuery(name = "Profesor.findByIdProfesor", query = "SELECT p FROM Profesor p WHERE p.idProfesor = :idProfesor")
     , @NamedQuery(name = "Profesor.findByNombre", query = "SELECT p FROM Profesor p WHERE p.nombre = :nombre")
     , @NamedQuery(name = "Profesor.findByApellidoPaterno", query = "SELECT p FROM Profesor p WHERE p.apellidoPaterno = :apellidoPaterno")
     , @NamedQuery(name = "Profesor.findByApellidoMaterno", query = "SELECT p FROM Profesor p WHERE p.apellidoMaterno = :apellidoMaterno")
     , @NamedQuery(name = "Profesor.findByRfc", query = "SELECT p FROM Profesor p WHERE p.rfc = :rfc")})
 public class Profesor implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idP")
+    private List<Profesorimparteunidad> profesorimparteunidadList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,8 +62,6 @@ public class Profesor implements Serializable {
     @Basic(optional = false)
     @Column(name = "RFC")
     private String rfc;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesor")
-    private List<Profesorimparteunidad> profesorimparteunidadList;
 
     public Profesor() {
     }
@@ -80,11 +79,11 @@ public class Profesor implements Serializable {
         this.rfc = rfc;
     }
 
-    public Integer getId() {
+    public Integer getIdP() {
         return idP;
     }
 
-    public void setId(Integer idP) {
+    public void setIdP(Integer idP) {
         this.idP = idP;
     }
 
@@ -128,15 +127,6 @@ public class Profesor implements Serializable {
         this.rfc = rfc;
     }
 
-    @XmlTransient
-    public List<Profesorimparteunidad> getProfesorimparteunidadList() {
-        return profesorimparteunidadList;
-    }
-
-    public void setProfesorimparteunidadList(List<Profesorimparteunidad> profesorimparteunidadList) {
-        this.profesorimparteunidadList = profesorimparteunidadList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -159,7 +149,16 @@ public class Profesor implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.slp.entidad.Profesor[ id=" + idP + " ]";
+        return "mx.slp.entidad.Profesor[ idP=" + idP + " ]";
+    }
+
+    @XmlTransient
+    public List<Profesorimparteunidad> getProfesorimparteunidadList() {
+        return profesorimparteunidadList;
+    }
+
+    public void setProfesorimparteunidadList(List<Profesorimparteunidad> profesorimparteunidadList) {
+        this.profesorimparteunidadList = profesorimparteunidadList;
     }
     
 }

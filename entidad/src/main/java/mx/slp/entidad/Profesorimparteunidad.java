@@ -37,12 +37,12 @@ public class Profesorimparteunidad implements Serializable {
     @Basic(optional = false)
     @Column(name = "IdProfesorImparteUnidad")
     private Integer idProfesorImparteUnidad;
-    @JoinColumn(name = "IdProfesor", referencedColumnName = "IdP")
+    @JoinColumn(name = "IdP", referencedColumnName = "IdP")
     @ManyToOne(optional = false)
     private Profesor idP;
-    @JoinColumn(name = "IdUnidadAprendizaje", referencedColumnName = "IdUA")
+    @JoinColumn(name = "IdUA", referencedColumnName = "IdUA")
     @ManyToOne(optional = false)
-    private UnidadAprendizaje idUA;
+    private Unidadaprendizaje idUA;
 
     public Profesorimparteunidad() {
     }
@@ -59,19 +59,19 @@ public class Profesorimparteunidad implements Serializable {
         this.idProfesorImparteUnidad = idProfesorImparteUnidad;
     }
 
-    public Profesor getIdProfesor() {
+    public Profesor getIdP() {
         return idP;
     }
 
-    public void setIdProfesor(Profesor idP) {
+    public void setIdP(Profesor idP) {
         this.idP = idP;
     }
 
-    public UnidadAprendizaje getIdUnidadAprendizaje() {
+    public Unidadaprendizaje getIdUA() {
         return idUA;
     }
 
-    public void setIdUnidadAprendizaje(UnidadAprendizaje idUA) {
+    public void setIdUA(Unidadaprendizaje idUA) {
         this.idUA = idUA;
     }
 

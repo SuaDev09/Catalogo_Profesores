@@ -11,8 +11,8 @@ package test;
  */
 import java.util.ArrayList;
 import java.util.List;
-import mx.slp.DAO.UnidadAprendizajeDAO;
-import mx.slp.entidad.UnidadAprendizaje;
+import mx.slp.DAO.UnidadaprendizajeDAO;
+import mx.slp.entidad.Unidadaprendizaje;
 
 /**
  *
@@ -21,11 +21,11 @@ import mx.slp.entidad.UnidadAprendizaje;
 public class test {
     public static void main(String[] args) {
         
-        List<UnidadAprendizaje> listaUnidades = new ArrayList();
-        UnidadAprendizajeDAO unidadDAO = new UnidadAprendizajeDAO();
+        List<Unidadaprendizaje> listaUnidades = new ArrayList();
+        UnidadaprendizajeDAO unidadDAO = new UnidadaprendizajeDAO();
         listaUnidades = unidadDAO.findAll();
         
-        for(UnidadAprendizaje uA: listaUnidades){
+        for(Unidadaprendizaje uA: listaUnidades){
             System.out.println("Unidad id " + uA.getNombre());
         }
     }

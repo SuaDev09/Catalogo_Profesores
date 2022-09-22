@@ -6,7 +6,7 @@
 package test;
 
 import mx.slp.integracion.ServiceFacadeLocator;
-import mx.slp.entidad.UnidadAprendizaje;
+import mx.slp.entidad.Unidadaprendizaje;
 
 /**
  *
@@ -14,7 +14,7 @@ import mx.slp.entidad.UnidadAprendizaje;
  */
 public class test {
     public static void main(String[] args) {
-        UnidadAprendizaje uA = new UnidadAprendizaje(0, 20, "Matematica", 10, 2, 3);
+        Unidadaprendizaje uA = new Unidadaprendizaje(0, 20, "Matematica", 10, 2, 3);
         
         ServiceFacadeLocator.getInstanceFacadeUnidad().saveUnidad(uA);
         

@@ -4,14 +4,14 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import mx.slp.entidad.Profesor;
-import mx.slp.entidad.UnidadAprendizaje;
+import mx.slp.entidad.Unidadaprendizaje;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-09-22T00:37:20")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-09-22T01:40:03")
 @StaticMetamodel(Profesorimparteunidad.class)
 public class Profesorimparteunidad_ { 
 
     public static volatile SingularAttribute<Profesorimparteunidad, Profesor> idP;
-    public static volatile SingularAttribute<Profesorimparteunidad, UnidadAprendizaje> idUA;
+    public static volatile SingularAttribute<Profesorimparteunidad, Unidadaprendizaje> idUA;
     public static volatile SingularAttribute<Profesorimparteunidad, Integer> idProfesorImparteUnidad;
 
 }
