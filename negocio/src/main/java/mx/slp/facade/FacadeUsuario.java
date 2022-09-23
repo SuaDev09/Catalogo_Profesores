@@ -17,7 +17,7 @@ public class FacadeUsuario {
     /**
      * Metodo para verificar si el usuario esta registrado en la bd
      * @param password 
-     * @param correo
+     * @param nameUsuario
      * @return un tipo usuario si no encuntra el usuario sera null
      */
     public Usuario login(String password, String nameUsuario){

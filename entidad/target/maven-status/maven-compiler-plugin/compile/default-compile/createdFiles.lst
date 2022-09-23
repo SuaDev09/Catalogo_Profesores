@@ -4,3 +4,5 @@ mx\slp\entidad\Profesor.class
 mx\slp\entidad\Profesor_.class
 mx\slp\entidad\Profesorimparteunidad.class
 mx\slp\entidad\Unidadaprendizaje_.class
+mx\slp\entidad\Usuario.class
+mx\slp\entidad\Usuario_.class
