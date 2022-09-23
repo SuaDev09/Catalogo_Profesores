@@ -31,12 +31,4 @@ public class DelegateUsuario {
         }
         return usuario;
     }
-    
-    /**
-     * Metodo de ejemplo para guardar Usuario
-     * @param usuario de tipo usuario con id 0 para poder que se cree un id nuevo
-     */
-    public void saveUsario(Usuario usuario){
-        ServiceLocator.getInstanceUsuarioDAO().save(usuario);
-    }
 }

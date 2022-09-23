@@ -21,44 +21,45 @@ import mx.slp.helper.LoginHelper;
  */
 @ManagedBean(name = "loginBeanUI")
 @SessionScoped
-public class LoginBeanUI implements Serializable{
+public class LoginBeanUI implements Serializable {
+
     private LoginHelper loginHelper;
     private Usuario usuario;
-    
+
     public LoginBeanUI() {
         loginHelper = new LoginHelper();
     }
-    
+
     /**
-     * Metodo postconstructor todo lo que este dentro de este metodo
-     * sera la primero que haga cuando cargue la pagina
+     * Metodo postconstructor todo lo que este dentro de este metodo sera la
+     * primero que haga cuando cargue la pagina
      */
     @PostConstruct
-    public void init(){
-        usuario= new Usuario();
+    public void init() {
+        usuario = new Usuario();
     }
 
-     public void login() throws IOException{
+    public void login() throws IOException {
         String appURL = "/index.xhtml";
         // los atributos de usuario vienen del xhtml 
-        Usuario us= new Usuario();
-        us.setIdUsuario(1); 
+        Usuario us = new Usuario();
+        us.setIdUsuario(1);
         us = loginHelper.Login(usuario.getPassword(), usuario.getNameUsuario());
-         System.out.println("Us: jotojotjotjot " + us.toString());
-          if(us != null){
+        System.out.println("name " + us.getNameUsuario());
+        System.out.println("pass " + us.getPassword());
+        System.out.println("Us: jotojotjotjot " + us.toString());
+        if (us != null && us.getIdUsuario() != null) {
             // asigno el usuario encontrado al usuario de esta clase para que 
             // se muestre correctamente en la pagina de informacion
-            usuario=us;
+            usuario = us;
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + appURL);
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario o contraseña incorrecta:", "Intente de nuevo"));     
-              System.out.println("Jotototototoot");
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario o contraseña incorrecta:", "Intente de nuevo"));
+            System.out.println("Jotototototoot");
         }
     }
 
-    
     /* getters y setters*/
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -66,5 +67,5 @@ public class LoginBeanUI implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
 }

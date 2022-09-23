@@ -8,35 +8,26 @@ package mx.slp.facade;
 import java.util.List;
 import mx.slp.entidad.Usuario;
 import mx.slp.integracion.ServiceLocator;
+import mx.slp.delegate.DelegateUsuario;
 
 /**
  *
  * @author ghots
  */
 public class FacadeUsuario {
+    private final DelegateUsuario delegateUsuario;
+    
+    public FacadeUsuario() {
+        this.delegateUsuario = new DelegateUsuario();
+    }
+    
     /**
      * Metodo para verificar si el usuario esta registrado en la bd
      * @param password 
      * @param nameUsuario
-     * @return un tipo usuario si no encuntra el usuario sera null
+     * @return Regresa usuario si el correo y contraseñ son correctos
      */
     public Usuario login(String password, String nameUsuario){
-        Usuario usuario = new Usuario();
-        List<Usuario> usuarios = ServiceLocator.getInstanceUsuarioDAO().findAll();
-        
-        for(Usuario us:usuarios){
-            if(us.getPassword().equalsIgnoreCase(password) && us.getNameUsuario().equalsIgnoreCase(nameUsuario)){
-                usuario = us;
-            }
-        }
-        return usuario;
-    }
-    
-    /**
-     * Metodo de ejemplo para guardar Usuario
-     * @param usuario de tipo usuario con id 0 para poder que se cree un id nuevo
-     */
-    public void saveUsario(Usuario usuario){
-        ServiceLocator.getInstanceUsuarioDAO().save(usuario);
+        return delegateUsuario.login(password, nameUsuario);
     }
 }
