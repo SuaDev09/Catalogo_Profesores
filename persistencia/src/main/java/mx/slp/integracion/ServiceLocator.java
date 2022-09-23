@@ -8,6 +8,7 @@ package mx.slp.integracion;
 import mx.slp.DAO.ProfesorDAO;
 import mx.slp.DAO.ProfesorimparteunidadDAO;
 import mx.slp.DAO.UnidadaprendizajeDAO;
+import mx.slp.DAO.UsuarioDAO;
 
 /**
  *
@@ -18,6 +19,7 @@ public class ServiceLocator {
     private static ProfesorDAO profesorDAO;
     private static UnidadaprendizajeDAO unidadAprendizajeDAO;
     private static ProfesorimparteunidadDAO profesorImparteDAO;
+    private static UsuarioDAO usuarioDAO;
     
     public static ProfesorDAO getInstaceProfesorDAO(){
         if(profesorDAO == null){
@@ -43,6 +45,15 @@ public class ServiceLocator {
             return profesorImparteDAO;
         } else{
             return profesorImparteDAO;
+        }
+    }
+    
+    public static UsuarioDAO getInstanceUsuarioDAO(){
+        if(usuarioDAO == null){
+            usuarioDAO = new UsuarioDAO();
+            return usuarioDAO;
+        } else{
+            return usuarioDAO;
         }
     }
 }
