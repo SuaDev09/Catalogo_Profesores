@@ -8,40 +8,64 @@
     <h:body>
 
         <h:form>
-
             <div class="RegistroUnidadAprendizaje">
-                <h5>Unidad de aprendizaje</h5>
+                <h1>Unidad de aprendizaje</h1>
+                <br></br>
                 <div class="Registro">
                     <div class="Id">
-                        <h:outputLabel for="firstname4" styleClass="col-12 md:col-2" value="Id de la unidad de apfendizaje:"/>
-                        <br></br>
+                        <h:outputLabel for="firstname4" styleClass="col-12 md:col-2"/>
+                         <h3>Numero de unidad de aprendizaje</h3>
                         <h:inputText id="firstname4"/>
                     </div>
                     <div class="Nomre">
-                        <h:outputLabel for="firstname5" styleClass="col-12 md:col-2" value="Nombre de la unidad de apfendizaje:"/>
-                        <br></br>
+                        <h:outputLabel for="firstname5" styleClass="col-12 md:col-2"/>
+                        <h3>Nomre de unidad de aprendizaje</h3>
                         <h:inputText id="firstname5"/>
                     </div>
                     <div class="Clase">
-                        <h:outputLabel for="firstname6" styleClass="col-12 md:col-2" value="Horas clase:"/>
-                        <br></br>
+                        <h:outputLabel for="firstname6" styleClass="col-12 md:col-2"/>
+                        <h3>Horas clase:</h3>
                         <h:inputText id="firstname6"/>
                     </div>
                     <div class="Taller">
-                        <h:outputLabel for="firstname7" styleClass="col-12 md:col-2" value="Horas taller:"/>
-                        <br></br>
+                        <h:outputLabel for="firstname7" styleClass="col-12 md:col-2"/>
+                         <h3>Horas taller:</h3>
                         <h:inputText id="firstname7"/>
                     </div>
                     <div class="Laboratorio">
-                        <h:outputLabel for="firstname8" styleClass="col-12 md:col-2" value="Horas laboratorio:"/>
-                        <br></br>
+                        <h:outputLabel for="firstname8" styleClass="col-12 md:col-2"/>
+                         <h3>Horas laboratorio:</h3>
                         <h:inputText id="firstname8"/>
                     </div>
                 </div>
                 <br></br>
-                <h:button value="Registro"/>
-            </div>
+                <div class="boton">
+                <h:button value="Registrar"/>
+                </div>
+            </div>  
         </h:form>
+
     </h:body>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        body{
+            font-weight:200;
+            font-size: 15px;
+            line-height:10px;
+
+        }
+        .RegistroUnidadAprendizaje{
+            max-width: 310px;
+            width:100%;
+            margin: auto;
+            position: relative;
+        }
+        
+       .RegistroUnidadAprendizaje .boton {
+            color: blue;
+        }
+    </style>
 </html>
 
