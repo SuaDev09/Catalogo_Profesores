@@ -18,8 +18,8 @@
             </h:form>
         </h:panelGrid>
         <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
-            <h:form>
-                <div class="RegistroUnidadAprendizaje">
+            <h:form id="form">
+                <p:panel id="panelForm">
                     <div class="Id">
                         <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
                         <br></br>
@@ -43,10 +43,10 @@
                     <div class="Laboratorio">
                         <p:outputLabel styleClass="" value="Horas laboratorio:"/>
                         <br></br>
-                        <p:inputText type="number" class="" placeholder="EJ: 1" required="true" requiredMessage="Favor de ingresar las horas de laboratorio" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasLaboratorio}"/>
+                        <p:inputText type="number" class="" placeholder="EJ: 1" required="true" requiredMessage="Favor de ingresar las horas de laboratorio" autocomplete="false" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasLaboratorio}"/>
                     </div>
-                    <p:commandButton  class="btn btn-success" value="Registrar Unidad" actionListener="#{unidadAprendizajeBeanUI.agregar()}" update=":UnidadesTabla:messages"/>
-                </div>
+                    <p:commandButton  class="btn btn-success" value="Registrar Unidad" actionListener="#{unidadAprendizajeBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
+                </p:panel>
             </h:form>
         </p:dialog>
 

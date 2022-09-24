@@ -17,6 +17,7 @@ import mx.slp.helper.LoginHelper;
 
 import mx.slp.entidad.Unidadaprendizaje;
 import mx.slp.helper.UnidadAprendizajeHelper;
+import org.primefaces.context.PrimeFacesContext;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -47,11 +48,9 @@ public class UnidadAprendizajeBeanUI implements Serializable {
         if (esIdValido(uA.getIdUnidadAprendizaje())) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "ID error", "Este ID de la unidad de aprendizaje ya se encuentra utilizado.");
             RequestContext.getCurrentInstance().showMessageInDialog(message);
-            uA = new Unidadaprendizaje();
         } else if (!sonHorasValidas.equals("")) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, sonHorasValidas, "Favor de comprobar que las horas sean validas.");
             RequestContext.getCurrentInstance().showMessageInDialog(message);
-            uA = new Unidadaprendizaje();
         } else {
             uA.setIdUA(0);
             unidadHelper.saveUnidad(uA);
