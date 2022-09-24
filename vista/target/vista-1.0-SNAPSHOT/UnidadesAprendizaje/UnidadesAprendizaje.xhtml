@@ -4,49 +4,74 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Unidad de Aprendizaje</title>
     </h:head>
     <h:body>
+        <p:messages id="messages" showDetail="true" closable="true">
 
-        <h:form>
-            <div class="RegistroUnidadAprendizaje">
-                <h5>Unidad de aprendizaje</h5>
-                <div class="Registro">
+        </p:messages>
+
+        <h:panelGrid columns="1" cellpadding="5">
+            <h:form>
+                <p:commandButton value="Registrar Unidad de aprendizaje" type="button" onclick="PF('dlg1').show();" />
+            </h:form>
+        </h:panelGrid>
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
+            <h:form>
+                <div class="RegistroUnidadAprendizaje">
                     <div class="Id">
-                        <h:outputLabel for="firstname4" styleClass="col-12 md:col-2" value="Id de la unidad de aprendizaje:"/>
+                        <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
                         <br></br>
-                        <h:inputText id="firstname4"/>
+                        <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.idUnidadAprendizaje}"/>
                     </div>
-                    <div class="Nomre">
-                        <h:outputLabel for="firstname5" styleClass="col-12 md:col-2" value="Nombre de la unidad de apfendizaje:"/>
+                    <div class="Nombre">
+                        <p:outputLabel styleClass="" value="Nombre de la unidad de aprendizaje:"/>
                         <br></br>
-                        <h:inputText id="firstname5"/>
+                        <p:inputText class="" placeholder="Nombre" required="true" requiredMessage="Favor de ingresar el nombre de la unidad de aprendizaje" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.nombre}"/>
                     </div>
                     <div class="Clase">
-                        <h:outputLabel for="firstname6" styleClass="col-12 md:col-2" value="Horas clase:"/>
+                        <p:outputLabel styleClass="" value="Horas clase:"/>
                         <br></br>
-                        <h:inputText id="firstname6"/>
+                        <p:inputText type="number" class="" placeholder="EJ: 3" required="true" requiredMessage="Favor de ingresar las horas de clase" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasClase}"/>
                     </div>
                     <div class="Taller">
-                        <h:outputLabel for="firstname7" styleClass="col-12 md:col-2" value="Horas taller:"/>
+                        <p:outputLabel styleClass="" value="Horas taller:"/>
                         <br></br>
-                        <h:inputText id="firstname7"/>
+                        <p:inputText type="number" class="" placeholder="EJ: 2"  required="true" requiredMessage="Favor de ingresar las horas de taller" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasTaller}"/>
                     </div>
                     <div class="Laboratorio">
-                        <h:outputLabel for="firstname8" styleClass="col-12 md:col-2" value="Horas laboratorio:"/>
+                        <p:outputLabel styleClass="" value="Horas laboratorio:"/>
                         <br></br>
-                        <h:inputText id="firstname8"/>
+                        <p:inputText type="number" class="" placeholder="EJ: 1" required="true" requiredMessage="Favor de ingresar las horas de laboratorio" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasLaboratorio}"/>
                     </div>
+                    <p:commandButton  class="btn btn-success" value="Registrar Unidad" actionListener="#{unidadAprendizajeBeanUI.agregar()}" update=":UnidadesTabla:messages"/>
                 </div>
-                <br></br>
-                <h:button value="Registro"/>
-            </div>
-        </h:form>
+            </h:form>
+        </p:dialog>
+
     </h:body>
 
-    <p:dataTable var="usuario" value="#{usuarioController.UService.all}">
-        <p:column headerText="Nombre">
-            <h:outputText value="#{usuario.nombre}" />
+    <p:dataTable var="unidad" value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" id="UnidadesTabla">
+        <p:column headerText="ID de la Unidad">
+            <h:outputText value="#{unidad.idUnidadAprendizaje}" />
+        </p:column>
+        <p:column headerText="Nombre de la unidad">
+            <h:outputText value="#{unidad.nombre}" />
+        </p:column>
+        <p:column headerText="Horas Clase">
+            <h:outputText value="#{unidad.horasClase}" />
+        </p:column>
+        <p:column headerText="Horas Taller">
+            <h:outputText value="#{unidad.horasTaller}" />
+        </p:column>
+        <p:column headerText="Horas Laboratorio">
+            <h:outputText value="#{unidad.horasLaboratorio}" />
+        </p:column>
+        <p:column headerText="Acciones">
+            <h:form>
+                <p:commandButton update="messages" class="btn" value="Ver Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
+            </h:form>
         </p:column>
     </p:dataTable>
 
