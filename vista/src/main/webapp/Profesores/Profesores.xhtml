@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Profesores</title>
+    </h:head>
+    <h:body>  
+    
+    <h:panelGrid columns="1" cellpadding="5">
+        <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" />
+    </h:panelGrid>
+    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
+        <h5>ID Profesor</h5>
+        <p:inputText id="itTitulo" label="Titulo" style="width: 450px" value="#{tareaController.tarea.titulo}"/>
+        <h5>Nombre</h5>
+        <p:inputText id="itNombre" label="Titulo" style="width: 450px" value="#{tareaController.tarea.titulo}"/>
+        <h5>Apellido Materno</h5>
+        <p:inputText id="itAm" label="Titulo" style="width: 450px" value="#{tareaController.tarea.titulo}"/>
+        <h5>Apellido Paterno</h5>
+        <p:inputText id="itAp" label="Titulo" style="width: 450px" value="#{tareaController.tarea.titulo}"/>
+        <h5>RFC</h5>
+        <p:inputText id="itRFC" label="Titulo" style="width: 450px" value="#{tareaController.tarea.titulo}"/>
+        <br></br>
+        <br></br>
+        <p:commandButton value="Aceptar" type="button" onclick="#{tareaController.guardarTarea()}"/>
+    </p:dialog>
+    
+    <p:dataTable var="usuario" value="#{usuarioController.UService.all}">
+        <p:column headerText="ID de profesor">
+            <h:outputText value="#{usuario.apellido}" />
+        </p:column>
+        <p:column headerText="Nombre">
+            <h:outputText value="#{usuario.nombreUsario}" />
+        </p:column>
+        <p:column headerText="Apellido Paterno">
+            <h:outputText value="#{usuario.nombre}" />
+        </p:column>
+        <p:column headerText="Apellido Materno">
+            <h:outputText value="#{usuario.nombre}" />
+        </p:column>
+    </p:dataTable>
+ 
+</html>

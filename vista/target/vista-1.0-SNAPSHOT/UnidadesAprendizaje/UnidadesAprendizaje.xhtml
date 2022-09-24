@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Unidad de Aprendizaje</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <div class="RegistroUnidadAprendizaje">
+                <h5>Unidad de aprendizaje</h5>
+                <div class="Registro">
+                    <div class="Id">
+                        <h:outputLabel for="firstname4" styleClass="col-12 md:col-2" value="Id de la unidad de aprendizaje:"/>
+                        <br></br>
+                        <h:inputText id="firstname4"/>
+                    </div>
+                    <div class="Nomre">
+                        <h:outputLabel for="firstname5" styleClass="col-12 md:col-2" value="Nombre de la unidad de apfendizaje:"/>
+                        <br></br>
+                        <h:inputText id="firstname5"/>
+                    </div>
+                    <div class="Clase">
+                        <h:outputLabel for="firstname6" styleClass="col-12 md:col-2" value="Horas clase:"/>
+                        <br></br>
+                        <h:inputText id="firstname6"/>
+                    </div>
+                    <div class="Taller">
+                        <h:outputLabel for="firstname7" styleClass="col-12 md:col-2" value="Horas taller:"/>
+                        <br></br>
+                        <h:inputText id="firstname7"/>
+                    </div>
+                    <div class="Laboratorio">
+                        <h:outputLabel for="firstname8" styleClass="col-12 md:col-2" value="Horas laboratorio:"/>
+                        <br></br>
+                        <h:inputText id="firstname8"/>
+                    </div>
+                </div>
+                <br></br>
+                <h:button value="Registro"/>
+            </div>
+        </h:form>
+    </h:body>
+
+    <p:dataTable var="usuario" value="#{usuarioController.UService.all}">
+        <p:column headerText="Nombre">
+            <h:outputText value="#{usuario.nombre}" />
+        </p:column>
+    </p:dataTable>
+
+</html>
+
