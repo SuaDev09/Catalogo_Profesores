@@ -15,17 +15,18 @@ import mx.slp.integracion.ServiceFacadeLocator;
  * @author ghots
  */
 public class test {
+
     public static void main(String[] args) {
         System.out.println("Iniciando pruebas");
         List<Unidadaprendizaje> listUnidades = ServiceFacadeLocator.getInstanceFacadeUnidad().obtenerUnidades();
         for (Unidadaprendizaje unidad : listUnidades) {
-            System.out.println("\nLista de unidades:"+unidad.getProfesorimparteunidadList().toString());
+            System.out.println("\nLista de unidades:" + unidad.getProfesorimparteunidadList().toString());
         }
         System.out.println("Finalizando pruebas");
-        
+
         Usuario usuario = ServiceFacadeLocator.getInstanceFacadeUsuario().login("admin123", "admin");
         System.out.println(usuario.toString());
-        if(usuario.getIdUsuario() != null){
+        if (usuario.getIdUsuario() != null) {
             System.out.println("Login exitoso con el nameUsuario: " + usuario.getNameUsuario());
         }
     }
