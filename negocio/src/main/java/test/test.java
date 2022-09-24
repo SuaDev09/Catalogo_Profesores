@@ -7,6 +7,7 @@ package test;
 
 import java.util.List;
 import mx.slp.entidad.Unidadaprendizaje;
+import mx.slp.entidad.Usuario;
 import mx.slp.integracion.ServiceFacadeLocator;
 
 /**
@@ -21,5 +22,11 @@ public class test {
             System.out.println("\nLista de unidades:"+unidad.getProfesorimparteunidadList().toString());
         }
         System.out.println("Finalizando pruebas");
+        
+        Usuario usuario = ServiceFacadeLocator.getInstanceFacadeUsuario().login("admin123", "admin");
+        System.out.println(usuario.toString());
+        if(usuario.getIdUsuario() != null){
+            System.out.println("Login exitoso con el nameUsuario: " + usuario.getNameUsuario());
+        }
     }
 }
