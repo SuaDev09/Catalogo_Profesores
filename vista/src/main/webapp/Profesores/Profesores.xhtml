@@ -2,120 +2,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Profesores</title>
     </h:head>
     <h:body>
-    
-    <h:panelGrid columns="1" cellpadding="5">
-        <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" />
-    </h:panelGrid>
-    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
-        <h5>ID Profesor</h5>
-        <p:inputNumber id="itTitulo" label="Titulo" style="width: 450px" value="#{profesorBeanUI.profesor.idProfesor}"/>
-        <h5>Nombre</h5>
-        <p:inputText id="itNombre" label="Titulo" style="width: 450px" value="#{profesorBeanUI.profesor.nombre}"/>
-        <h5>Apellido Materno</h5>
-        <p:inputText id="itAm" label="Titulo" style="width: 450px" value="#{profesorBeanUI.profesor.apellidoPaterno}"/>
-        <h5>Apellido Paterno</h5>
-        <p:inputText id="itAp" label="Titulo" style="width: 450px" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
-        <h5>RFC</h5>
-        <p:inputText id="itRFC" label="Titulo" style="width: 450px" value="#{profesorBeanUI.profesor.rfc}"/>
-        <br></br>
-        <br></br>
-        <p:commandButton value="Aceptar" type="button" onclick="#{tareaController.guardarTarea()}"/>
-    </p:dialog>
-    
-    <p:dataTable var="profesor" value="#{profesorBeanUI.obtenerProfesores()}">
-        <p:column headerText="ID de profesor">
-            <h:outputText value="#{profesor.idProfesor}" />
-        </p:column>
-        <p:column headerText="Nombre">
-            <h:outputText value="#{profesor.nombre}" />
-        </p:column>
-        <p:column headerText="Apellido Paterno">
-            <h:outputText value="#{profesor.apellidoPaterno}" />
-        </p:column>
-        <p:column headerText="Apellido Materno">
-            <h:outputText value="#{profesor.apellidoMaterno}" />
-        </p:column>
-        <p:column headerText="RFC">
-            <h:outputText value="#{profesor.rfc}" />
-        </p:column>
-    </p:dataTable>
- 
-        <h:head>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <title>Profesores</title>
-    </h:head>
-        <p:messages id="messages" showDetail="true" closable="true">
+        <ui:composition template="/main.xhtml">
+            <ui:define name="content">
+                <p:messages id="messages" showDetail="true" closable="true">
 
-        </p:messages>
+                </p:messages>
 
-        <h:panelGrid columns="1" cellpadding="5">
-            <h:form>
-                <p:commandButton value="Registrar profesores" type="button" onclick="PF('dlg1').show();" />
-            </h:form>
-        </h:panelGrid>
-        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
-            <h:form id="form">
-                <p:panel id="panelForm">
-                    <div class="Id">
-                        <p:outputLabel styleClass="" value="ID del profesor:"/>
-                        <br></br>
-                        <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{profesor}"/>
-                    </div>
-                    <div class="Nombre">
-                        <p:outputLabel styleClass="" value="Nombre del profesor:"/>
-                        <br></br>
-                        <p:inputText class="" placeholder="Nombre" required="true" requiredMessage="Favor de ingresar el nombre del profesor" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.nombre}"/>
-                    </div>
-                    <div class="Clase">
-                        <p:outputLabel styleClass="" value="Horas clase:"/>
-                        <br></br>
-                        <p:inputText type="number" class="" placeholder="EJ: 3" required="true" requiredMessage="Favor de ingresar las horas de clase" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasClase}"/>
-                    </div>
-                    <div class="Taller">
-                        <p:outputLabel styleClass="" value="Horas taller:"/>
-                        <br></br>
-                        <p:inputText type="number" class="" placeholder="EJ: 2"  required="true" requiredMessage="Favor de ingresar las horas de taller" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasTaller}"/>
-                    </div>
-                    <div class="Laboratorio">
-                        <p:outputLabel styleClass="" value="Horas laboratorio:"/>
-                        <br></br>
-                        <p:inputText type="number" class="" placeholder="EJ: 1" required="true" requiredMessage="Favor de ingresar las horas de laboratorio" autocomplete="false" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasLaboratorio}"/>
-                    </div>
-                    <p:commandButton  class="btn btn-success" value="Registrar Unidad" actionListener="#{unidadAprendizajeBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
-                </p:panel>
-            </h:form>
-        </p:dialog>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <h:form>
+                        <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" />
+                    </h:form>
+                </h:panelGrid>
 
-    </h:body>
+                <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
+                    <h:form id="form">
+                        <p:panel id="panelForm">
+                            <div class="Id">
+                                <p:outputLabel styleClass="" value="ID del profesor:"/>
+                                <br></br>
+                                <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID del profesor" value="#{profesorBeanUI.profesor.idProfesor}"/>
+                            </div>
+                            <div class="nombre">
+                                <p:outputLabel styleClass="" value="Nombre:"/>
+                                <br></br>
+                                <p:inputText class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el nombre del profesor" value="#{profesorBeanUI.profesor.nombre}"/>
+                            </div>
+                            <div class="apellidoPaterno">
+                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
+                                <br></br>
+                                <p:inputText class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el apellido paterno" value="#{profesorBeanUI.profesor.apellidoPaterno}"/>
+                            </div>
+                            <div class="apellidoMaterno">
+                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
+                                <br></br>
+                                <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
+                            </div>
+                            <div class="rfc">
+                                <p:outputLabel styleClass="" value="Favor de ingresar el RFC:"/>
+                                <br></br>
+                                <p:inputText  class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
+                            </div>
+                            <p:commandButton  class="btn btn-success" value="Registrar Profesro" actionListener="#{profesorBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
 
-    <p:dataTable var="unidad" value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" id="UnidadesTabla">
-        <p:column headerText="ID de la Unidad">
-            <h:outputText value="#{unidad.idUnidadAprendizaje}" />
-        </p:column>
-        <p:column headerText="Nombre de la unidad">
-            <h:outputText value="#{unidad.nombre}" />
-        </p:column>
-        <p:column headerText="Horas Clase">
-            <h:outputText value="#{unidad.horasClase}" />
-        </p:column>
-        <p:column headerText="Horas Taller">
-            <h:outputText value="#{unidad.horasTaller}" />
-        </p:column>
-        <p:column headerText="Horas Laboratorio">
-            <h:outputText value="#{unidad.horasLaboratorio}" />
-        </p:column>
-        <p:column headerText="Acciones">
-            <h:form>
-                <p:commandButton update="messages" class="btn" value="Ver Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
-            </h:form>
-        </p:column>
-    </p:dataTable>
-        
-        
-        
+                <p:dataTable var="profesor" styleClass="table table-striped" id="UnidadesTabla" value="#{profesorBeanUI.obtenerProfesores()}">
+                    <p:column headerText="ID de profesor">
+                        <h:outputText value="#{profesor.idProfesor}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{profesor.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido Paterno">
+                        <h:outputText value="#{profesor.apellidoPaterno}" />
+                    </p:column>
+                    <p:column headerText="Apellido Materno">
+                        <h:outputText value="#{profesor.apellidoMaterno}" />
+                    </p:column>
+                    <p:column headerText="RFC">
+                        <h:outputText value="#{profesor.rfc}" />
+                    </p:column>
+                    <p:column headerText="Acciones">
+                        <h:form>
+                            <p:commandButton update="messages" class="btn" value="Ver Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
+                        </h:form>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>>
+    </h:body>        
 </html>
