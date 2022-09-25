@@ -48,11 +48,13 @@ public class ProfesorBeanUI implements Serializable{
         String mensaje = rfcValido(profesor.getRfc());
         
         
-        if(profesor.getProfesorimparteunidadList().size() < 1){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error unidad de aprendizaje", "No se tiene una unidad de aprendizaje asignada");
-            RequestContext.getCurrentInstance().showMessageInDialog(message);
+        //retorna un null ya que no se a puesto una uniadad de aprendizaje
+        //if(profesor.getProfesorimparteunidadList().size() < 1){
+            //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error unidad de aprendizaje", "No se tiene una unidad de aprendizaje asignada");
+          //  RequestContext.getCurrentInstance().showMessageInDialog(message);
             
-        } else if (!mensaje.equals("")){
+        //}
+        if (!mensaje.equals("")){
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error RFC", "El rfc " + mensaje);
             RequestContext.getCurrentInstance().showMessageInDialog(message);
         } else if (validarID(profesor.getIdProfesor()) == true){
@@ -69,6 +71,11 @@ public class ProfesorBeanUI implements Serializable{
         }
         
         
+    }
+    
+    
+    public void eliminar(){
+        profesorHelper.deleteProfesor(profesor);
     }
 
     public List<Profesor> obtenerProfesores(){
@@ -102,8 +109,8 @@ public class ProfesorBeanUI implements Serializable{
         if(profesor.getRfc().length() > 13){
             mensaje = "es mayor de 13";
             bandera = true;
-        }else if (profesor.getRfc().length() < 1){
-            mensaje = "es menor que 1";
+        }else if (profesor.getRfc().length() < 13 ){
+            mensaje = "es menor que 13";
             bandera = true;
         }
         

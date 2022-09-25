@@ -18,6 +18,11 @@ public class DelegateProfesor {
         ServiceLocator.getInstaceProfesorDAO().save(profesor);
     }
     
+    
+    public void deleteProfesor(Profesor profesor){
+        ServiceLocator.getInstaceProfesorDAO().delete(profesor);
+    }
+    
     public List <Profesor> getProfesores(){
         return ServiceLocator.getInstaceProfesorDAO().findAll();
     }

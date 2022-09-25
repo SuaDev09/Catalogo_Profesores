@@ -26,38 +26,38 @@
                             <div class="Id">
                                 <p:outputLabel styleClass="" value="ID del profesor:"/>
                                 <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID del profesor" value="#{profesorBeanUI.profesor.idProfesor}"/>
+                                <p:inputText type="number" class="" placeholder="EJ: 12" required="true" requiredMessage="Favor de ingresar el ID del profesor" value="#{profesorBeanUI.profesor.idProfesor}"/>
                             </div>
                             <div class="nombre">
                                 <p:outputLabel styleClass="" value="Nombre:"/>
                                 <br></br>
-                                <p:inputText class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el nombre del profesor" value="#{profesorBeanUI.profesor.nombre}"/>
+                                <p:inputText class=""  required="true" requiredMessage="Favor de ingresar el nombre del profesor" value="#{profesorBeanUI.profesor.nombre}"/>
                             </div>
                             <div class="apellidoPaterno">
-                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
+                                <p:outputLabel styleClass="" value="Apellido paterno:"/>
                                 <br></br>
-                                <p:inputText class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el apellido paterno" value="#{profesorBeanUI.profesor.apellidoPaterno}"/>
+                                <p:inputText class="" required="true" requiredMessage="Favor de ingresar el apellido paterno" value="#{profesorBeanUI.profesor.apellidoPaterno}"/>
                             </div>
                             <div class="apellidoMaterno">
-                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
+                                <p:outputLabel styleClass="" value="Apellido materno:"/>
                                 <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
+                                <p:inputText  class="" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
                             </div>
                             <div class="rfc">
                                 <p:outputLabel styleClass="" value="Favor de ingresar el RFC:"/>
                                 <br></br>
-                                <p:inputText  class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
+                                <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
                             </div>
-                            <p:commandButton  class="btn btn-success" value="Registrar Profesro" actionListener="#{profesorBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
+                            <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
                         </p:panel>
                     </h:form>
                 </p:dialog>
 
-                <p:dataTable var="profesor" styleClass="table table-striped" id="UnidadesTabla" value="#{profesorBeanUI.obtenerProfesores()}">
+                <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="UnidadesTabla" value="#{profesorBeanUI.obtenerProfesores()}">
                     <p:column headerText="ID de profesor">
                         <h:outputText value="#{profesor.idProfesor}" />
                     </p:column>
-                    <p:column headerText="Nombre">
+                    <p:column headerText="Nombre" sortBy="#{profesor.nombre}" filterBy="#{profesor.nombre}">
                         <h:outputText value="#{profesor.nombre}" />
                     </p:column>
                     <p:column headerText="Apellido Paterno">
@@ -70,8 +70,10 @@
                         <h:outputText value="#{profesor.rfc}" />
                     </p:column>
                     <p:column headerText="Acciones">
-                        <h:form>
+                        <h:form> 
                             <p:commandButton update="messages" class="btn" value="Ver Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
+                            <p:commandButton update="messages" class="btn" value="Modificar Profesor" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
+                            <p:commandButton update="messages" class="btn" value="Eliminar Profesor" actionListener="#{profesorBeanUI.eliminar()}" />
                         </h:form>
                     </p:column>
                 </p:dataTable>

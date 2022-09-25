@@ -24,7 +24,7 @@
                     <h:form id="form">
                         <p:panel id="panelForm">
                             <div class="Id">
-                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
+                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:" />
                                 <br></br>
                                 <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.idUnidadAprendizaje}"/>
                             </div>
@@ -55,7 +55,7 @@
 
 
                 <p:dataTable class="" styleClass="table table-striped" var="unidad" value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" id="UnidadesTabla">
-                    <p:column headerText="ID de la Unidad">
+                    <p:column headerText="ID de la Unidad" sortBy="#{unidad.idUnidadAprendizaje}" filterBy="#{unidad.idUnidadAprendizaje}">
                         <h:outputText value="#{unidad.idUnidadAprendizaje}" />
                     </p:column>
                     <p:column headerText="Nombre de la unidad">

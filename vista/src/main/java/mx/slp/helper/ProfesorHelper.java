@@ -18,6 +18,11 @@ public class ProfesorHelper {
         ServiceFacadeLocator.getInstanceFacadeProfesor().guardarProfesor(profesor);
     }
     
+    
+    public void deleteProfesor(Profesor profesor){
+        ServiceFacadeLocator.getInstanceFacadeProfesor().borrarProfesor(profesor);
+    }
+    
     public List<Profesor> getProfesores(){
         return ServiceFacadeLocator.getInstanceFacadeProfesor().obtenerProfesores();
     }
