@@ -5,15 +5,17 @@
  */
 package mx.slp.facade;
 
+import java.util.List;
 import mx.slp.delegate.DelegateProfesor;
 import mx.slp.entidad.Profesor;
+import mx.slp.entidad.Profesorimparteunidad;
 
 /**
  *
  * @author ghots
  */
 public class FacadeProfesor {
-    public final DelegateProfesor delegateProfesor;
+    private final DelegateProfesor delegateProfesor;
     
     public FacadeProfesor(){
         this.delegateProfesor = new DelegateProfesor();
@@ -21,5 +23,9 @@ public class FacadeProfesor {
     
     public void guardarProfesor(Profesor profesor){
         delegateProfesor.saveProfesor(profesor);
+    }
+    
+    public List<Profesor> obtenerProfesores(){
+        return delegateProfesor.getProfesores();
     }
 }
