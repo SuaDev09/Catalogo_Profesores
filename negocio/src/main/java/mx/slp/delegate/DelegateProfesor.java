@@ -5,6 +5,7 @@
  */
 package mx.slp.delegate;
 
+import java.util.List;
 import mx.slp.entidad.Profesor;
 import mx.slp.integracion.ServiceLocator;
 
@@ -15,5 +16,9 @@ import mx.slp.integracion.ServiceLocator;
 public class DelegateProfesor {
     public void saveProfesor(Profesor profesor){
         ServiceLocator.getInstaceProfesorDAO().save(profesor);
+    }
+    
+    public List <Profesor> getProfesores(){
+        return ServiceLocator.getInstaceProfesorDAO().findAll();
     }
 }

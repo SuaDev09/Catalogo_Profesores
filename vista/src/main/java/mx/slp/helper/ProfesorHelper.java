@@ -5,10 +5,20 @@
  */
 package mx.slp.helper;
 
+import java.util.List;
+import mx.slp.entidad.Profesor;
+import mx.slp.integracion.ServiceFacadeLocator;
+
 /**
  *
  * @author ghots
  */
 public class ProfesorHelper {
+    public void saveProfesor(Profesor profesor){
+        ServiceFacadeLocator.getInstanceFacadeProfesor().guardarProfesor(profesor);
+    }
     
+    public List<Profesor> getProfesores(){
+        return ServiceFacadeLocator.getInstanceFacadeProfesor().obtenerProfesores();
+    }
 }
