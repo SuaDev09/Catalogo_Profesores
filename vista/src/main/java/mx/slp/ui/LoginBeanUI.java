@@ -41,7 +41,7 @@ public class LoginBeanUI implements Serializable {
     }
 
     public void login() throws IOException {
-        String appURL = "/UnidadesAprendizaje/UnidadesAprendizaje.xhtml";
+        String appURL = "/main.xhtml";
         // los atributos de usuario vienen del xhtml 
         Usuario us = new Usuario();
         us.setIdUsuario(1);
