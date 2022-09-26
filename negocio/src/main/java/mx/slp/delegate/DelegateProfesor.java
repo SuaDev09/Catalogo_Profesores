@@ -7,6 +7,7 @@ package mx.slp.delegate;
 
 import java.util.List;
 import mx.slp.entidad.Profesor;
+import mx.slp.entidad.Profesorimparteunidad;
 import mx.slp.integracion.ServiceLocator;
 
 /**
@@ -14,16 +15,22 @@ import mx.slp.integracion.ServiceLocator;
  * @author ghots
  */
 public class DelegateProfesor {
-    public void saveProfesor(Profesor profesor){
+
+    public void saveProfesor(Profesor profesor) {
         ServiceLocator.getInstaceProfesorDAO().save(profesor);
     }
-    
-    
-    public void deleteProfesor(Profesor profesor){
+
+    public void deleteProfesor(Profesor profesor) {
         ServiceLocator.getInstaceProfesorDAO().delete(profesor);
     }
-    
-    public List <Profesor> getProfesores(){
+
+    public List<Profesor> getProfesores() {
         return ServiceLocator.getInstaceProfesorDAO().findAll();
+    }
+
+    public void saveUnidades(List<Profesorimparteunidad> unidades) {
+        for (Profesorimparteunidad unidad : unidades) {
+            ServiceLocator.getInstaceProfesorImparteDAO().save(unidad);
+        }
     }
 }

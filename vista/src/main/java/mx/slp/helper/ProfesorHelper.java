@@ -5,15 +5,17 @@
  */
 package mx.slp.helper;
 
+import java.io.Serializable;
 import java.util.List;
 import mx.slp.entidad.Profesor;
+import mx.slp.entidad.Profesorimparteunidad;
 import mx.slp.integracion.ServiceFacadeLocator;
 
 /**
  *
  * @author ghots
  */
-public class ProfesorHelper {
+public class ProfesorHelper implements Serializable{
     public void saveProfesor(Profesor profesor){
         ServiceFacadeLocator.getInstanceFacadeProfesor().guardarProfesor(profesor);
     }
@@ -25,5 +27,9 @@ public class ProfesorHelper {
     
     public List<Profesor> getProfesores(){
         return ServiceFacadeLocator.getInstanceFacadeProfesor().obtenerProfesores();
+    }
+    
+    public void setUnidadesImpartidas(List<Profesorimparteunidad> unidades){
+        ServiceFacadeLocator.getInstanceFacadeProfesor().guardarUnidades(unidades);
     }
 }

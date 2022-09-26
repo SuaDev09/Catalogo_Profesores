@@ -6,87 +6,99 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Unidad de Aprendizaje</title>
     </h:head>
     <h:body>
         <ui:composition template="/main.xhtml">
             <ui:define name="content">
-                <p:messages id="messages" showDetail="true" closable="true">
+                <div class="w-90 px-5 py-3">
+                    <p:messages id="messages" showDetail="true" closable="true">
 
-                </p:messages>
+                    </p:messages>
 
-                <h:panelGrid columns="1" cellpadding="5">
-                    <h:form>
-                        <p:commandButton value="Registrar Unidad de aprendizaje" type="button" onclick="PF('dlg1').show();" />
-                    </h:form>
-                </h:panelGrid>
-                <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
-                    <h:form id="form">
-                        <p:panel id="panelForm">
-                            <div class="Id">
-                                <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
-                                <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.idUnidadAprendizaje}"/>
-                            </div>
-                            <div class="Nombre">
-                                <p:outputLabel styleClass="" value="Nombre de la unidad de aprendizaje:"/>
-                                <br></br>
-                                <p:inputText class="" placeholder="Nombre" required="true" requiredMessage="Favor de ingresar el nombre de la unidad de aprendizaje" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.nombre}"/>
-                            </div>
-                            <div class="Clase">
-                                <p:outputLabel styleClass="" value="Horas clase:"/>
-                                <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 3" required="true" requiredMessage="Favor de ingresar las horas de clase" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasClase}"/>
-                            </div>
-                            <div class="Taller">
-                                <p:outputLabel styleClass="" value="Horas taller:"/>
-                                <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 2"  required="true" requiredMessage="Favor de ingresar las horas de taller" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasTaller}"/>
-                            </div>
-                            <div class="Laboratorio">
-                                <p:outputLabel styleClass="" value="Horas laboratorio:"/>
-                                <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 1" required="true" requiredMessage="Favor de ingresar las horas de laboratorio" autocomplete="false" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasLaboratorio}"/>
-                            </div>
-                            <p:commandButton  class="btn btn-success" value="Registrar Unidad" actionListener="#{unidadAprendizajeBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
-                        </p:panel>
-                    </h:form>
-                </p:dialog>
 
-                <div>
-                    <h5>Unidades de Aprendizaje</h5>
-                    <p:dataTable  var="unidad" filteredValue="#{unidadAprendizajeBeanUI.obtenerUnidades()}" 
-                                  widgetVar="unidadesWiddget" value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" id="UnidadesTabla">
-                        <f:facet name="header">
-                            <div class="align-items-center jusitfy-content-between">
-                                <span>Unidades de Aprendizaje</span>
-                                <div>
-                                    <p:inputText id="nameFilter" onkeyup="PF('unidadesWidget').filter()" placeholder="Ingresar nombre de la unidad"/>
+                    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="false">
+                        <h:form id="form">
+                            <p:panel id="panelForm">
+                                <div class="Id">
+                                    <p:outputLabel styleClass="" value="ID de la unidad de aprendizaje:"/>
+                                    <br></br>
+                                    <p:inputText type="number" class="" placeholder="EJ: 123000" required="true" requiredMessage="Favor de ingresar el ID de la unidad" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.idUnidadAprendizaje}"/>
                                 </div>
-                            </div>
-                        </f:facet>
-                        <p:column headerText="ID de la Unidad">
-                            <h:outputText value="#{unidad.idUnidadAprendizaje}" />
-                        </p:column>
-                        <p:column headerText="Nombre de la unidad" sortBy="#{unidad.nombre}">
-                            <h:outputText value="#{unidad.nombre}" />
-                        </p:column>
-                        <p:column headerText="Horas Clase">
-                            <h:outputText value="#{unidad.horasClase}" />
-                        </p:column>
-                        <p:column headerText="Horas Taller">
-                            <h:outputText value="#{unidad.horasTaller}" />
-                        </p:column>
-                        <p:column headerText="Horas Laboratorio">
-                            <h:outputText value="#{unidad.horasLaboratorio}" />
-                        </p:column>
-                        <p:column headerText="Acciones">
-                            <h:form>
-                                <p:commandButton update="messages" class="btn" value="Ver Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
-                            </h:form>
-                        </p:column>
-                    </p:dataTable>
+                                <div class="Nombre">
+                                    <p:outputLabel styleClass="" value="Nombre de la unidad de aprendizaje:"/>
+                                    <br></br>
+                                    <p:inputText class="" placeholder="Nombre" required="true" requiredMessage="Favor de ingresar el nombre de la unidad de aprendizaje" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.nombre}"/>
+                                </div>
+                                <div class="Clase">
+                                    <p:outputLabel styleClass="" value="Horas clase:"/>
+                                    <br></br>
+                                    <p:inputText type="number" class="" placeholder="EJ: 3" required="true" requiredMessage="Favor de ingresar las horas de clase" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasClase}"/>
+                                </div>
+                                <div class="Taller">
+                                    <p:outputLabel styleClass="" value="Horas taller:"/>
+                                    <br></br>
+                                    <p:inputText type="number" class="" placeholder="EJ: 2"  required="true" requiredMessage="Favor de ingresar las horas de taller" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasTaller}"/>
+                                </div>
+                                <div class="Laboratorio">
+                                    <p:outputLabel styleClass="" value="Horas laboratorio:"/>
+                                    <br></br>
+                                    <p:inputText type="number" class="" placeholder="EJ: 1" required="true" requiredMessage="Favor de ingresar las horas de laboratorio" autocomplete="false" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.horasLaboratorio}"/>
+                                </div>
+                                <p:commandButton  class="btn btn-success" value="Registrar Unidad" actionListener="#{unidadAprendizajeBeanUI.agregar()}" update=":formData:UnidadesTabla :messages :form:panelForm" resetValues="true"/>
+                            </p:panel>
+                        </h:form>
+                    </p:dialog>
+
+                    <div>
+                        <h5>Unidades de Aprendizaje</h5>
+                        <h:form id="formData">
+                            <p:dataTable  var="unidad" 
+                                          value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" id="UnidadesTabla"
+                                          sortMode="single">
+
+                                <f:facet name="header">
+                                    <div class="d-flex flex-row flex-wrap justify-content-around">
+                                        <div>
+                                            <h:form>
+                                                <span class="mx-2">Buscar unidad de aprendizaje</span>
+                                                <p:inputText id="nameFilter" onkeyup="PF('unidadesWidget').filter()" placeholder="EJ: Matematicas"/>
+                                            </h:form>
+                                        </div>
+                                        <div>
+                                            <h:form>
+                                                <p:commandButton value="Registrar Unidad de aprendizaje" type="button" onclick="PF('dlg1').show();" />
+                                            </h:form>
+                                        </div>
+
+                                    </div>
+                                </f:facet>
+
+                                <p:column headerText="ID de la Unidad">
+                                    <h:outputText value="#{unidad.idUnidadAprendizaje}" />
+                                </p:column>
+
+                                <p:column headerText="Nombre de la unidad" sortBy="#{unidad.nombre}">
+                                    <h:outputText value="#{unidad.nombre}" />
+                                </p:column>
+                                <p:column headerText="Horas Clase">
+                                    <h:outputText value="#{unidad.horasClase}" />
+                                </p:column>
+                                <p:column headerText="Horas Taller">
+                                    <h:outputText value="#{unidad.horasTaller}" />
+                                </p:column>
+                                <p:column headerText="Horas Laboratorio">
+                                    <h:outputText value="#{unidad.horasLaboratorio}" />
+                                </p:column>
+                                <p:column headerText="Acciones">
+                                    <h:form>
+                                        <p:commandButton update="messages" class="btn bi bi-people-fill" value="Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
+                                    </h:form>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

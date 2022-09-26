@@ -6,6 +6,7 @@
 package test;
 
 import java.util.List;
+import mx.slp.entidad.Profesor;
 import mx.slp.entidad.Unidadaprendizaje;
 import mx.slp.entidad.Usuario;
 import mx.slp.integracion.ServiceFacadeLocator;
@@ -28,6 +29,12 @@ public class test {
         System.out.println(usuario.toString());
         if (usuario.getIdUsuario() != null) {
             System.out.println("Login exitoso con el nameUsuario: " + usuario.getNameUsuario());
+        }
+        
+        System.out.println("PRUEBAS PROFESORRRR---------");
+        List<Profesor> listaProfesores = ServiceFacadeLocator.getInstanceFacadeProfesor().obtenerProfesores();
+        for(Profesor pr : listaProfesores){
+            System.out.println(pr.getIdP() + "+" + pr.getIdProfesor()+ "+" + pr.getNombre() + "+");
         }
     }
 }

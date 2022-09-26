@@ -8,6 +8,7 @@ package mx.slp.facade;
 import java.util.List;
 import mx.slp.delegate.DelegateProfesor;
 import mx.slp.entidad.Profesor;
+import mx.slp.entidad.Profesorimparteunidad;
 
 /**
  *
@@ -31,5 +32,9 @@ public class FacadeProfesor {
     
     public List<Profesor> obtenerProfesores(){
         return delegateProfesor.getProfesores();
+    }
+    
+    public void guardarUnidades(List<Profesorimparteunidad> unidades){
+        delegateProfesor.saveUnidades(unidades);
     }
 }

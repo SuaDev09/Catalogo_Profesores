@@ -3,80 +3,120 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Profesores</title>
     </h:head>
     <h:body>
         <ui:composition template="/main.xhtml">
             <ui:define name="content">
-                <p:messages id="messages" showDetail="true" closable="true">
+                <div class="w-90 px-5 py-3">
+                    <p:messages id="messages" showDetail="true" closable="true">
 
-                </p:messages>
+                    </p:messages>
 
-                <h:panelGrid columns="1" cellpadding="5">
-                    <h:form>
-                        <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" />
-                    </h:form>
-                </h:panelGrid>
+                    <div>
+                        <h5>Unidades de Aprendizaje</h5>
+                        <h:form id="profesoresData">
+                            <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{profesorBeanUI.obtenerProfesores()}">
+                                <f:facet name="header">
+                                    <div class="d-flex flex-row flex-wrap justify-content-around">
+                                        <div>
+                                            <h:form>
+                                                <span class="mx-2">Buscar unidad de aprendizaje</span>
+                                                <p:inputText id="nameFilter" onkeyup="PF('unidadesWidget').filter()" placeholder="EJ: Matematicas"/>
+                                            </h:form>
+                                        </div>
+                                        <div>
+                                            <h:form>
+                                                <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" oncomplete="PF('dlg1').show();" />
+                                            </h:form>
+                                        </div>
+                                    </div>
 
-                <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="true">
-                    <h:form id="form">
-                        <p:panel id="panelForm">
-                            <div class="Id">
-                                <p:outputLabel styleClass="" value="ID del profesor:"/>
-                                <br></br>
-                                <p:inputText type="number" class="" placeholder="EJ: 12" required="true" requiredMessage="Favor de ingresar el ID del profesor" value="#{profesorBeanUI.profesor.idProfesor}"/>
-                            </div>
-                            <div class="nombre">
-                                <p:outputLabel styleClass="" value="Nombre:"/>
-                                <br></br>
-                                <p:inputText class=""  required="true" requiredMessage="Favor de ingresar el nombre del profesor" value="#{profesorBeanUI.profesor.nombre}"/>
-                            </div>
-                            <div class="apellidoPaterno">
-                                <p:outputLabel styleClass="" value="Apellido paterno:"/>
-                                <br></br>
-                                <p:inputText class="" required="true" requiredMessage="Favor de ingresar el apellido paterno" value="#{profesorBeanUI.profesor.apellidoPaterno}"/>
-                            </div>
-                            <div class="apellidoMaterno">
-                                <p:outputLabel styleClass="" value="Apellido materno:"/>
-                                <br></br>
-                                <p:inputText  class="" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
-                            </div>
-                            <div class="rfc">
-                                <p:outputLabel styleClass="" value="Favor de ingresar el RFC:"/>
-                                <br></br>
-                                <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
-                            </div>
-                            <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":UnidadesTabla :messages :form:panelForm" resetValues="true"/>
-                        </p:panel>
-                    </h:form>
-                </p:dialog>
-
-                <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="UnidadesTabla" value="#{profesorBeanUI.obtenerProfesores()}">
-                    <p:column headerText="ID de profesor">
-                        <h:outputText value="#{profesor.idProfesor}" />
-                    </p:column>
-                    <p:column headerText="Nombre" sortBy="#{profesor.nombre}" filterBy="#{profesor.nombre}">
-                        <h:outputText value="#{profesor.nombre}" />
-                    </p:column>
-                    <p:column headerText="Apellido Paterno">
-                        <h:outputText value="#{profesor.apellidoPaterno}" />
-                    </p:column>
-                    <p:column headerText="Apellido Materno">
-                        <h:outputText value="#{profesor.apellidoMaterno}" />
-                    </p:column>
-                    <p:column headerText="RFC">
-                        <h:outputText value="#{profesor.rfc}" />
-                    </p:column>
-                    <p:column headerText="Acciones">
-                        <h:form> 
-                            <p:commandButton update="messages" class="btn" value="Ver Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
-                            <p:commandButton update="messages" class="btn" value="Modificar Profesor" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
-                            <p:commandButton update="messages" class="btn" value="Eliminar Profesor" actionListener="#{profesorBeanUI.eliminar()}" />
+                                </f:facet>
+                                <p:column headerText="ID de profesor">
+                                    <h:outputText value="#{profesor.idProfesor}" />
+                                </p:column>
+                                <p:column headerText="Nombre" sortBy="#{profesor.nombre}">
+                                    <h:outputText value="#{profesor.nombre}" />
+                                </p:column>
+                                <p:column headerText="Apellido Paterno">
+                                    <h:outputText value="#{profesor.apellidoPaterno}" />
+                                </p:column>
+                                <p:column headerText="Apellido Materno">
+                                    <h:outputText value="#{profesor.apellidoMaterno}" />
+                                </p:column>
+                                <p:column headerText="RFC">
+                                    <h:outputText value="#{profesor.rfc}" />
+                                </p:column>
+                                <p:column headerText="Acciones">
+                                    <h:form> 
+                                        <p:commandButton update="messages" class="btn" value="Unidades" actionListener="#{profesor.verProfesores()}" />
+                                        <p:commandButton icon="pi pi-pencil" update=":profesoresData:ProfesoresTabla :messages :dialogs:form:panelForm" resetValues="true"
+                                                         oncomplete="PF('dlg1').show()"
+                                                         styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                            <f:setPropertyActionListener value="#{profesor}" target="#{profesorBeanUI.profesor}" />
+                                            <p:resetInput target=":dialogs:form:panelForm" />
+                                        </p:commandButton>
+                                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this" oncomplete="PF('deleteProfesorDialog').show()"/>
+                                    </h:form>
+                                </p:column>
+                            </p:dataTable>
                         </h:form>
-                    </p:column>
-                </p:dataTable>
+                    </div>
+                </div>
+
+                <h:form id="dialogs">
+                    <p:dialog header="Profesores" widgetVar="dlg1" minHeight="100" draggable="false">
+                        <h:form id="form">
+                            <p:panel id="panelForm">
+                                <div class="Id">
+                                    <p:outputLabel styleClass="" value="ID del profesor:"/>
+                                    <br></br>
+                                    <p:inputText type="number" class="" placeholder="EJ: 12" required="true" requiredMessage="Favor de ingresar el ID del profesor" value="#{profesorBeanUI.profesor.idProfesor}"/>
+                                </div>
+                                <div class="nombre">
+                                    <p:outputLabel styleClass="" value="Nombre:"/>
+                                    <br></br>
+                                    <p:inputText class=""  required="true" requiredMessage="Favor de ingresar el nombre del profesor" value="#{profesorBeanUI.profesor.nombre}"/>
+                                </div>
+                                <div class="apellidoPaterno">
+                                    <p:outputLabel styleClass="" value="Apellido paterno:"/>
+                                    <br></br>
+                                    <p:inputText class="" required="true" requiredMessage="Favor de ingresar el apellido paterno" value="#{profesorBeanUI.profesor.apellidoPaterno}"/>
+                                </div>
+                                <div class="apellidoMaterno">
+                                    <p:outputLabel styleClass="" value="Apellido materno:"/>
+                                    <br></br>
+                                    <p:inputText  class="" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
+                                </div>
+                                <div class="rfc">
+                                    <p:outputLabel styleClass="" value="Favor de ingresar el RFC:"/>
+                                    <br></br>
+                                    <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
+                                </div>
+                                <div class="rfc">
+                                    <p:outputLabel styleClass="" value="Favor de ingresar las unidades aprendizaje que impartira:"/>
+                                    <br></br>
+
+                                    <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
+                                </div>
+                                <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":profesoresData:ProfesoresTabla :messages :dialogs:form:panelForm" resetValues="true"/>
+                            </p:panel>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:confirmDialog widgetVar="deleteProfesorDialog" showEffect="fade" width="300"
+                                     message="Delete the product?" header="Confirm" severity="warn">
+                        <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{profesorBeanUI.eliminar()}"
+                                         process="@this" oncomplete="PF('deleteProfesorDialog').hide()" />
+                        <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                         onclick="PF('deleteProfesorDialog').hide()" />
+                    </p:confirmDialog>
+                </h:form>
+
             </ui:define>
         </ui:composition>>
     </h:body>        
