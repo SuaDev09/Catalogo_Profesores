@@ -94,7 +94,7 @@ public class ProfesorBeanUI implements Serializable {
                     profesor.setIdP(0);
                     profesorHelper.saveProfesor(profesor);
                     for (int i = 0; i < unidad.size(); i++) {
-                        impartidas.add(new Profesorimparteunidad(0, unidad.indexOf(i), profesor));
+                        impartidas.add(new Profesorimparteunidad(0, unidad.get(i), profesor));
                         //impartidas.get(i).setIdProfesorImparteUnidad(0);
                         System.out.println("<><><><><><><><><><><><><><><><><><><><>><<<<<>>>>>>"+impartidas.get(i).getIdUA());
                     }
