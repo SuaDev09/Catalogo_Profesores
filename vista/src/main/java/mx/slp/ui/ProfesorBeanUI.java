@@ -7,6 +7,7 @@ package mx.slp.ui;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -34,13 +35,14 @@ public class ProfesorBeanUI implements Serializable {
     private ProfesorHelper profesorHelper;
     private UnidadAprendizajeHelper unidadHelper;
     private Profesor profesor;
-    private List<Profesorimparteunidad> imparte;
-        private List<Profesorimparteunidad> impartidas;
+    private List<Unidadaprendizaje> unidades;
+    private List<Profesorimparteunidad> impartidas;
 
     private List<Unidadaprendizaje> unidad;
 
     public ProfesorBeanUI() {
         profesorHelper = new ProfesorHelper();
+        unidadHelper = new UnidadAprendizajeHelper();
     }
 
 //    Metodo postconstructor
@@ -49,6 +51,32 @@ public class ProfesorBeanUI implements Serializable {
     @PostConstruct
     public void init() {
         profesor = new Profesor();
+        unidades = unidadHelper.getUnidades();
+        impartidas = new ArrayList<Profesorimparteunidad>();
+    }
+
+    public List<Unidadaprendizaje> getUnidades() {
+        return unidades;
+    }
+
+    public void setUnidades(List<Unidadaprendizaje> unidades) {
+        this.unidades = unidades;
+    }
+
+    public List<Profesorimparteunidad> getImpartidas() {
+        return impartidas;
+    }
+
+    public void setImpartidas(List<Profesorimparteunidad> impartidas) {
+        this.impartidas = impartidas;
+    }
+
+    public List<Unidadaprendizaje> getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(List<Unidadaprendizaje> unidad) {
+        this.unidad = unidad;
     }
 
     public void agregar() throws IOException {
@@ -62,18 +90,18 @@ public class ProfesorBeanUI implements Serializable {
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
                 PrimeFaces.current().dialog().showMessageDynamic(message);
             } else {
-                if (!imparte.isEmpty()) {
+                if (!impartidas.isEmpty()) {
                     profesor.setIdP(0);
                     profesorHelper.saveProfesor(profesor);
-                    for (int i = 0; i < imparte.size(); i++) {
-                        imparte.get(i).setIdProfesorImparteUnidad(0);
-                        imparte.get(i).setIdP(profesor);
+                    for (int i = 0; i < impartidas.size(); i++) {
+                        impartidas.get(i).setIdProfesorImparteUnidad(0);
+                        impartidas.get(i).setIdP(profesor);
                     }
-                    profesorHelper.setUnidadesImpartidas(imparte);
+                    profesorHelper.setUnidadesImpartidas(impartidas);
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
                     PrimeFaces.current().dialog().showMessageDynamic(message);
                     profesor = new Profesor();
-                } else{
+                } else {
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No has asignado unidades de aprendizaje al profesor.");
                     PrimeFaces.current().dialog().showMessageDynamic(message);
                 }
@@ -134,5 +162,4 @@ public class ProfesorBeanUI implements Serializable {
 //    public List<Unidadaprendizaje> obtenerUnidades() {
 //        return unidadHelper.getUnidades();
 //    }
-
 }

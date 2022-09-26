@@ -30,7 +30,7 @@
                                         </div>
                                         <div>
                                             <h:form>
-                                                <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" oncomplete="PF('dlg1').show();" />
+                                                <p:commandButton value="Registrar Profesor" type="button" onclick="PF('dlg1').show();" />
                                             </h:form>
                                         </div>
                                     </div>
@@ -54,11 +54,11 @@
                                 <p:column headerText="Acciones">
                                     <h:form> 
                                         <p:commandButton update="messages" class="btn" value="Unidades" actionListener="#{profesor.verProfesores()}" />
-                                        <p:commandButton icon="pi pi-pencil" update=":profesoresData:ProfesoresTabla :messages :dialogs:form:panelForm" resetValues="true"
+                                        <p:commandButton icon="pi pi-pencil" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"
                                                          oncomplete="PF('dlg1').show()"
                                                          styleClass="edit-button rounded-button ui-button-success" process="@this">
                                             <f:setPropertyActionListener value="#{profesor}" target="#{profesorBeanUI.profesor}" />
-                                            <p:resetInput target=":dialogs:form:panelForm" />
+                                            <p:resetInput target=":form:panelForm" />
                                         </p:commandButton>
                                         <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this" oncomplete="PF('deleteProfesorDialog').show()"/>
                                     </h:form>
@@ -68,8 +68,7 @@
                     </div>
                 </div>
 
-                <h:form id="dialogs">
-                    <p:dialog header="Profesores" widgetVar="dlg1" minHeight="100" draggable="false">
+                <p:dialog header="Profesores" widgetVar="dlg1" minHeight="100" draggable="false">
                         <h:form id="form">
                             <p:panel id="panelForm">
                                 <div class="Id">
@@ -100,14 +99,22 @@
                                 <div class="rfc">
                                     <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                     <br></br>
-                                    <p:selectManyMenu id="unidades" value="#{profesorBeanUI.imparte}" showCheckbox="true" styleClass="manymenu-advanced">
-                                        <f:selectItems value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad}"/>
+                                    <p:selectManyMenu id="unidades" value="#{profesorBeanUI.impartidas}" var="u" showCheckbox="true" styleClass="manymenu-advanced">
+                                        <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad}"/>
+                                        <p:column>
+                                            <h:outputText value="u.idUnidadAprendizaje"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText value="u.nombre"/>
+                                        </p:column>
                                     </p:selectManyMenu>
                                 </div>
-                                <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":profesoresData:ProfesoresTabla :messages :dialogs:form:panelForm" resetValues="true"/>
+                                <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"/>
                             </p:panel>
                         </h:form>
                     </p:dialog>
+                
+                <h:form id="dialogs">
 
                     <p:confirmDialog widgetVar="deleteProfesorDialog" showEffect="fade" width="300"
                                      message="Delete the product?" header="Confirm" severity="warn">
