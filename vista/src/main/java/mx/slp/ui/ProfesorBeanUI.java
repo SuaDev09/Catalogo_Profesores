@@ -96,7 +96,7 @@ public class ProfesorBeanUI implements Serializable {
                     for (int i = 0; i < unidad.size(); i++) {
                         impartidas.add(new Profesorimparteunidad(0, unidad.get(i), profesor));
                         //impartidas.get(i).setIdProfesorImparteUnidad(0);
-                        System.out.println("<><><><><><><><><><><><><><><><><><><><>><<<<<>>>>>>"+impartidas.get(i).getIdUA());
+                        System.out.println("<><><><><><><><><><><><><><><><><><><><>><<<<<>>>>>>" + impartidas.get(i).getIdUA());
                     }
                     profesorHelper.setUnidadesImpartidas(impartidas);
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
@@ -115,8 +115,8 @@ public class ProfesorBeanUI implements Serializable {
 
     }
 
-    public void eliminar() {
-        profesorHelper.deleteProfesor(profesor);
+    public void eliminar(Profesor pAux) {
+        profesorHelper.deleteProfesor(pAux);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido eliminado de manera exitosa.");
         PrimeFaces.current().dialog().showMessageDynamic(message);
     }

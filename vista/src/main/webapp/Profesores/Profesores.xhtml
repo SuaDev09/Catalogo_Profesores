@@ -60,7 +60,18 @@
                                             <f:setPropertyActionListener value="#{profesor}" target="#{profesorBeanUI.profesor}" />
                                             <p:resetInput target=":form:panelForm" />
                                         </p:commandButton>
+
+
+
                                         <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this" oncomplete="PF('deleteProfesorDialog').show()"/>
+                                        <p:confirmDialog widgetVar="deleteProfesorDialog" showEffect="fade" width="300"
+                                                         message="Delete the product?" header="Confirm" severity="warn">
+                                            <p:commandButton value="Yes" icon="pi pi-check" action="#{profesorBeanUI.eliminar(profesor)}" update=":profesoresData:ProfesoresTabla :messages :form:panelForm"
+                                                             process="@this" oncomplete="PF('deleteProfesorDialog').hide()">
+
+                                            </p:commandButton>
+                                            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times" onclick="PF('deleteProfesorDialog').hide()" />
+                                        </p:confirmDialog>
                                     </h:form>
                                 </p:column>
                             </p:dataTable>
@@ -100,7 +111,7 @@
                                 <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                 <br></br>
                                 <p:selectManyMenu id="unidades" value="#{profesorBeanUI.unidad}" var="u" showCheckbox="true" styleClass="manymenu-advanced">
-                                    <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad}"/>
+                                    <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{unidad}" itemValue="#{unidad}"/>
                                     <p:column>
                                         <h:outputText value="#{u.idUnidadAprendizaje}"/>
                                     </p:column>
@@ -116,13 +127,7 @@
 
                 <h:form id="dialogs">
 
-                    <p:confirmDialog widgetVar="deleteProfesorDialog" showEffect="fade" width="300"
-                                     message="Delete the product?" header="Confirm" severity="warn">
-                        <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{profesorBeanUI.eliminar()}"
-                                         process="@this" oncomplete="PF('deleteProfesorDialog').hide()" />
-                        <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
-                                         onclick="PF('deleteProfesorDialog').hide()" />
-                    </p:confirmDialog>
+
                 </h:form>
 
             </ui:define>

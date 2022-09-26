@@ -47,7 +47,7 @@ public class Profesorimparteunidad implements Serializable {
     public Profesorimparteunidad() {
     }
     
-    public Profesorimparteunidad(int id, Unidadaprendizaje uA, Profesor p) {
+    public Profesorimparteunidad(Integer id, Unidadaprendizaje uA, Profesor p) {
         this.idProfesorImparteUnidad = id;
         this.idUA = uA;
         this.idP = p;
