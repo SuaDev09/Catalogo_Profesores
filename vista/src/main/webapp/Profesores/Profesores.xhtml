@@ -109,13 +109,10 @@
                             <div class="rfc">
                                 <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                 <br></br>
-                                <p:selectManyMenu id="unidades" value="#{profesorBeanUI.unidad}" var="u" converter="#{unidad}" showCheckbox="true" styleClass="manymenu-advanced">
+                                <p:selectManyMenu id="unidades" value="#{profesorBeanUI.uSeleccionadas}" var="u" converter="#{unidad}" showCheckbox="true" styleClass="manymenu-advanced">
                                     <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{unidad}" itemValue="#{unidad}"/>
                                     <p:column>
-                                        <h:outputText value="#{u.idUnidadAprendizaje}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <h:outputText value="#{u.nombre}"/>
+                                        <p:outputLabel value="#{unidad.idUnidadAprendizaje} - #{unidad.nombre}"/>
                                     </p:column>
                                 </p:selectManyMenu>
                             </div>
