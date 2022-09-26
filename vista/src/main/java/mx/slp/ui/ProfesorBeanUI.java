@@ -35,6 +35,8 @@ public class ProfesorBeanUI implements Serializable {
     private UnidadAprendizajeHelper unidadHelper;
     private Profesor profesor;
     private List<Profesorimparteunidad> imparte;
+        private List<Profesorimparteunidad> impartidas;
+
     private List<Unidadaprendizaje> unidad;
 
     public ProfesorBeanUI() {
@@ -132,7 +134,5 @@ public class ProfesorBeanUI implements Serializable {
 //    public List<Unidadaprendizaje> obtenerUnidades() {
 //        return unidadHelper.getUnidades();
 //    }
-//<!--                                    <p:selectManyMenu id="unidades" value="#{profesorBeanUI.imparte.setIdUnidad}" showCheckbox="true" styleClass="manymenu-advanced">
-//                                        <f:selectItems value="#{profesorBeanUI.profesor.profesorimparteunidadList}" var="unidad" itemLabel="#{profesorBeanUI.obtenerUnidades()}" itemValue="#{unidad}"/>
-//                                    </p:selectManyMenu>-->
+
 }

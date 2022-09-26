@@ -93,15 +93,16 @@
                                     <p:inputText  class="" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.apellidoMaterno}"/>
                                 </div>
                                 <div class="rfc">
-                                    <p:outputLabel styleClass="" value="Favor de ingresar el RFC:"/>
+                                    <p:outputLabel styleClass="" value="RFC:"/>
                                     <br></br>
                                     <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
                                 </div>
                                 <div class="rfc">
-                                    <p:outputLabel styleClass="" value="Favor de ingresar las unidades aprendizaje que impartira:"/>
+                                    <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                     <br></br>
-
-                                    <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
+                                    <p:selectManyMenu id="unidades" value="#{profesorBeanUI.imparte}" showCheckbox="true" styleClass="manymenu-advanced">
+                                        <f:selectItems value="#{unidadAprendizajeBeanUI.obtenerUnidades()}" var="unidad" itemLabel="#{unidad.nombre}" itemValue="#{unidad}"/>
+                                    </p:selectManyMenu>
                                 </div>
                                 <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":profesoresData:ProfesoresTabla :messages :dialogs:form:panelForm" resetValues="true"/>
                             </p:panel>
