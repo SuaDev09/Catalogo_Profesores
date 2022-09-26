@@ -90,13 +90,13 @@ public class ProfesorBeanUI implements Serializable {
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
                 PrimeFaces.current().dialog().showMessageDynamic(message);
             } else {
-                if (!impartidas.isEmpty()) {
+                if (!unidad.isEmpty()) {
                     profesor.setIdP(0);
                     profesorHelper.saveProfesor(profesor);
-                    for (int i = 0; i < impartidas.size(); i++) {
+                    for (int i = 0; i < unidad.size(); i++) {
+                        impartidas.add(new Profesorimparteunidad(0, unidad.indexOf(i), profesor));
                         //impartidas.get(i).setIdProfesorImparteUnidad(0);
                         System.out.println("<><><><><><><><><><><><><><><><><><><><>><<<<<>>>>>>"+impartidas.get(i).getIdUA());
-                        impartidas.get(i).setIdP(profesor);
                     }
                     profesorHelper.setUnidadesImpartidas(impartidas);
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
