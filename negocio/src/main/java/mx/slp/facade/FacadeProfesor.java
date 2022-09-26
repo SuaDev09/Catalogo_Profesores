@@ -25,6 +25,9 @@ public class FacadeProfesor {
         delegateProfesor.saveProfesor(profesor);
     }
     
+    public void actualizarProfesor(Profesor profesor){
+        delegateProfesor.updateProfesor(profesor);
+    }
     
     public void borrarProfesor(Profesor profesor){
         delegateProfesor.deleteProfesor(profesor);

@@ -13,12 +13,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import mx.slp.entidad.Profesorimparteunidad;
 import mx.slp.helper.LoginHelper;
 
 import mx.slp.entidad.Unidadaprendizaje;
 import mx.slp.helper.UnidadAprendizajeHelper;
 import org.primefaces.PrimeFaces;
 import org.primefaces.context.PrimeFacesContext;
+
 /**
  *
  * @author ghots
@@ -58,10 +60,6 @@ public class UnidadAprendizajeBeanUI implements Serializable {
             uA = new Unidadaprendizaje();
             //FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/UnidadesAprendizaje/UnidadesAprendizaje.xhtml");
         }
-    }
-
-    public void verProfesores() throws IOException {
-
     }
 
     public List<Unidadaprendizaje> obtenerUnidades() {

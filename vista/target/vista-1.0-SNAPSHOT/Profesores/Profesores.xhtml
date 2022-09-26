@@ -17,7 +17,7 @@
                     </p:messages>
 
                     <div>
-                        <h5>Unidades de Aprendizaje</h5>
+                        <h5>Profesores</h5>
                         <h:form id="profesoresData">
                             <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{profesorBeanUI.obtenerProfesores()}">
                                 <f:facet name="header">
@@ -53,7 +53,6 @@
                                 </p:column>
                                 <p:column headerText="Acciones">
                                     <h:form> 
-                                        <p:commandButton update="messages" class="btn" value="Unidades" actionListener="#{profesor.verProfesores()}" />
                                         <p:commandButton icon="pi pi-pencil" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"
                                                          oncomplete="PF('dlg1').show()"
                                                          styleClass="edit-button rounded-button ui-button-success" process="@this">
@@ -110,7 +109,7 @@
                             <div class="rfc">
                                 <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                 <br></br>
-                                <p:selectManyMenu id="unidades" value="#{profesorBeanUI.unidad}" var="u" showCheckbox="true" styleClass="manymenu-advanced">
+                                <p:selectManyMenu id="unidades" value="#{profesorBeanUI.unidad}" var="u" converter="#{unidad}" showCheckbox="true" styleClass="manymenu-advanced">
                                     <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{unidad}" itemValue="#{unidad}"/>
                                     <p:column>
                                         <h:outputText value="#{u.idUnidadAprendizaje}"/>

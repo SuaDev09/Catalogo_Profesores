@@ -86,22 +86,41 @@ public class ProfesorBeanUI implements Serializable {
             if (!mensaje.equals("")) {
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error RFC", "El rfc " + mensaje);
                 PrimeFaces.current().dialog().showMessageDynamic(message);
-            } else if (validarID(profesor.getIdProfesor()) == true) {
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
-                PrimeFaces.current().dialog().showMessageDynamic(message);
             } else {
                 if (!unidad.isEmpty()) {
-                    profesor.setIdP(0);
-                    profesorHelper.saveProfesor(profesor);
-                    for (int i = 0; i < unidad.size(); i++) {
-                        impartidas.add(new Profesorimparteunidad(0, unidad.get(i), profesor));
-                        //impartidas.get(i).setIdProfesorImparteUnidad(0);
-                        System.out.println("<><><><><><><><><><><><><><><><><><><><>><<<<<>>>>>>" + impartidas.get(i).getIdUA());
+                    if (profesor.getIdP() < 0 || profesor.getIdP() == null) {
+                        if (validarID(profesor.getIdProfesor()) == true) {
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
+                            PrimeFaces.current().dialog().showMessageDynamic(message);
+                        } else {
+                            profesor.setIdP(0);
+                            profesorHelper.saveProfesor(profesor);
+                            for (int i = 0; i < unidad.size(); i++) {
+                                impartidas.add(new Profesorimparteunidad(0, unidad.get(i), profesor));
+                            }
+                            profesorHelper.setUnidadesImpartidas(impartidas);
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
+                            PrimeFaces.current().dialog().showMessageDynamic(message);
+                            profesor = new Profesor();
+                        }
+
+                    } else {
+                        if (validarID(profesor.getIdProfesor())) {
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
+                            PrimeFaces.current().dialog().showMessageDynamic(message);
+                        } else {
+                            profesorHelper.updateProfesor(profesor);
+                            for (int i = 0; i < unidad.size(); i++) {
+                                impartidas.add(new Profesorimparteunidad(0, unidad.get(i), profesor));
+                            }
+                            profesorHelper.setUnidadesImpartidas(impartidas);
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido actualizado de manera correcta.");
+                            PrimeFaces.current().dialog().showMessageDynamic(message);
+                            profesor = new Profesor();
+                        }
+
                     }
-                    profesorHelper.setUnidadesImpartidas(impartidas);
-                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
-                    PrimeFaces.current().dialog().showMessageDynamic(message);
-                    profesor = new Profesor();
+
                 } else {
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No has asignado unidades de aprendizaje al profesor.");
                     PrimeFaces.current().dialog().showMessageDynamic(message);
@@ -137,6 +156,18 @@ public class ProfesorBeanUI implements Serializable {
         boolean bandera = false;
         for (Profesor profesor : profesorHelper.getProfesores()) {
             if (profesor.getIdProfesor() == id) {
+                bandera = true;
+                break;
+            }
+        }
+
+        return bandera;
+    }
+    
+    public boolean validarPrimary(int primary) {
+        boolean bandera = false;
+        for (Profesor profesor : profesorHelper.getProfesores()) {
+            if (profesor.getIdP() == primary) {
                 bandera = true;
                 break;
             }

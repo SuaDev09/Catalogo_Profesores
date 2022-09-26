@@ -20,6 +20,10 @@ public class DelegateProfesor {
         ServiceLocator.getInstaceProfesorDAO().save(profesor);
     }
 
+    public void updateProfesor(Profesor profesor){
+        ServiceLocator.getInstaceProfesorDAO().update(profesor);
+    }
+    
     public void deleteProfesor(Profesor profesor) {
         ServiceLocator.getInstaceProfesorDAO().delete(profesor);
     }

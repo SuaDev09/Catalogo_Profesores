@@ -92,13 +92,57 @@
                                 </p:column>
                                 <p:column headerText="Acciones">
                                     <h:form>
-                                        <p:commandButton update="messages" class="btn bi bi-people-fill" value="Profesores" actionListener="#{unidadAprendizajeBeanUI.verProfesores()}" />
+                                        <p:commandButton update="messages" class="btn bi bi-people-fill" value="Profesores" oncomplete="PF('dlg2').show()" />
                                     </h:form>
                                 </p:column>
                             </p:dataTable>
                         </h:form>
 
                     </div>
+                    <p:dialog header="Profesores" widgetVar="dlg2" minHeight="100" draggable="false">
+                        <h:form id="profesoresData">
+                            <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{unidadAprendizajeBeanUI.}">
+                                <p:column headerText="ID de profesor">
+                                    <h:outputText value="#{profesor.idP.idProfesor}" />
+                                </p:column>
+                                <p:column headerText="Nombre" sortBy="#{profesor.nombre}">
+                                    <h:outputText value="#{profesor.idP.nombre}" />
+                                </p:column>
+                                <p:column headerText="Apellido Paterno">
+                                    <h:outputText value="#{profesor.idP.apellidoPaterno}" />
+                                </p:column>
+                                <p:column headerText="Apellido Materno">
+                                    <h:outputText value="#{profesor.idP.apellidoMaterno}" />
+                                </p:column>
+                                <p:column headerText="RFC">
+                                    <h:outputText value="#{profesor.idP.rfc}" />
+                                </p:column>
+                                <p:column headerText="Acciones">
+                                    <h:form> 
+                                        <p:commandButton icon="pi pi-pencil" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"
+                                                         oncomplete="PF('dlg1').show()"
+                                                         styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                            <f:setPropertyActionListener value="#{profesor}" target="#{profesorBeanUI.profesor}" />
+                                            <p:resetInput target=":form:panelForm" />
+                                        </p:commandButton>
+
+
+
+                                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this" oncomplete="PF('deleteProfesorDialog').show()"/>
+                                        <p:confirmDialog widgetVar="deleteProfesorDialog" showEffect="fade" width="300"
+                                                         message="Delete the product?" header="Confirm" severity="warn">
+                                            <p:commandButton value="Yes" icon="pi pi-check" action="#{profesorBeanUI.eliminar(profesor.idP)}" update=":profesoresData:ProfesoresTabla :messages :form:panelForm"
+                                                             process="@this" oncomplete="PF('deleteProfesorDialog').hide()">
+
+                                            </p:commandButton>
+                                            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times" onclick="PF('deleteProfesorDialog').hide()" />
+                                        </p:confirmDialog>
+                                    </h:form>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:dialog>
+
                 </div>
             </ui:define>
         </ui:composition>

@@ -29,6 +29,10 @@ public class ProfesorHelper implements Serializable{
         return ServiceFacadeLocator.getInstanceFacadeProfesor().obtenerProfesores();
     }
     
+    public void updateProfesor(Profesor profesor){
+        ServiceFacadeLocator.getInstanceFacadeProfesor().actualizarProfesor(profesor);
+    }
+    
     public void setUnidadesImpartidas(List<Profesorimparteunidad> unidades){
         ServiceFacadeLocator.getInstanceFacadeProfesor().guardarUnidades(unidades);
     }
