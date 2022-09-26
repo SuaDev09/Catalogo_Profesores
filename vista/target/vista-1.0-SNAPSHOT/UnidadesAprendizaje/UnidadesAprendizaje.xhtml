@@ -17,7 +17,7 @@
                     </p:messages>
 
 
-                    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" draggable="false">
+                    <p:dialog header="Unidades de aprendizaje" widgetVar="dlg1" minHeight="40" draggable="false">
                         <h:form id="form">
                             <p:panel id="panelForm">
                                 <div class="Id">
@@ -59,12 +59,7 @@
 
                                 <f:facet name="header">
                                     <div class="d-flex flex-row flex-wrap justify-content-around">
-                                        <div>
-                                            <h:form>
-                                                <span class="mx-2">Buscar unidad de aprendizaje</span>
-                                                <p:inputText id="nameFilter" onkeyup="PF('unidadesWidget').filter()" placeholder="EJ: Matematicas"/>
-                                            </h:form>
-                                        </div>
+                                        
                                         <div>
                                             <h:form>
                                                 <p:commandButton value="Registrar Unidad de aprendizaje" type="button" onclick="PF('dlg1').show();" />
@@ -78,7 +73,7 @@
                                     <h:outputText value="#{unidad.idUnidadAprendizaje}" />
                                 </p:column>
 
-                                <p:column headerText="Nombre de la unidad" sortBy="#{unidad.nombre}">
+                                <p:column headerText="Nombre de la unidad" sortBy="#{unidad.nombre}" sortOrder="asc" filterBy="#{unidad.nombre}">
                                     <h:outputText value="#{unidad.nombre}" />
                                 </p:column>
                                 <p:column headerText="Horas Clase">
@@ -101,7 +96,7 @@
                     </div>
                     <p:dialog header="Profesores" widgetVar="dlg2" minHeight="100" draggable="false">
                         <h:form id="profesoresData">
-                            <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{unidadAprendizajeBeanUI.}">
+                            <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.profesorimparteunidadList}">
                                 <p:column headerText="ID de profesor">
                                     <h:outputText value="#{profesor.idP.idProfesor}" />
                                 </p:column>

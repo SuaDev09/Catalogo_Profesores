@@ -62,6 +62,8 @@ public class UnidadAprendizajeBeanUI implements Serializable {
         }
     }
 
+    //Retornar lista de todas las profesorimparteunidad
+    
     public List<Unidadaprendizaje> obtenerUnidades() {
         return unidadHelper.getUnidades();
     }
