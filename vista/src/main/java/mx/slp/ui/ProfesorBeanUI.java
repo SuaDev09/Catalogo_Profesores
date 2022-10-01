@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.LongConverter;
 import mx.slp.helper.LoginHelper;
 
 import mx.slp.entidad.Profesor;
@@ -35,11 +36,15 @@ public class ProfesorBeanUI implements Serializable {
     private ProfesorHelper profesorHelper;
     private UnidadAprendizajeHelper unidadHelper;
     private Profesor profesor;
+    private String seleccionarUnidades;
     private List<Unidadaprendizaje> unidades;
-    private List<Unidadaprendizaje> uSeleccionadas ;
     private List<Profesorimparteunidad> impartidas;
+    private Unidadaprendizaje uA1 = new Unidadaprendizaje(26, 11717, "Fisica Diferencial", 19, 20, 10);
+    private Unidadaprendizaje uA2 = new Unidadaprendizaje(17, 321, "ads", 2, 1, 1);
+    List<Unidadaprendizaje> uAS;
 
     public ProfesorBeanUI() {
+        uAS = new ArrayList();
         profesorHelper = new ProfesorHelper();
         unidadHelper = new UnidadAprendizajeHelper();
     }
@@ -54,6 +59,8 @@ public class ProfesorBeanUI implements Serializable {
     }
 
     public void agregar() throws IOException {
+        uAS.add(uA1);
+        uAS.add(uA2);
 
         String mensaje = rfcValido(profesor.getRfc());
         if (!unidadHelper.getUnidades().isEmpty()) {
@@ -61,18 +68,14 @@ public class ProfesorBeanUI implements Serializable {
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error RFC", "El rfc " + mensaje);
                 PrimeFaces.current().dialog().showMessageDynamic(message);
             } else {
-                if (!uSeleccionadas.isEmpty()) {
+                if (!seleccionarUnidades.isEmpty()) {
                     if (profesor.getIdP() == null) {
                         if (validarID(profesor.getIdProfesor()) == true) {
                             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                         } else {
                             profesor.setIdP(0);
-                            profesorHelper.saveProfesor(profesor);
-                            for (Unidadaprendizaje uSeleccionada : uSeleccionadas) {
-                                impartidas.add(new Profesorimparteunidad(0, uSeleccionada, profesor));
-                            }
-                            //profesorHelper.setUnidadesImpartidas(impartidas);
+                            profesorHelper.saveProfesor(profesor, uAS);
                             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                             profesor = new Profesor();
@@ -83,16 +86,11 @@ public class ProfesorBeanUI implements Serializable {
                             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                         } else {
-                            profesorHelper.updateProfesor(profesor);
-                            for (int i = 0; i < unidades.size(); i++) {
-                                impartidas.add(new Profesorimparteunidad(0, unidades.get(i), profesor));
-                            }
-                            profesorHelper.setUnidadesImpartidas(impartidas);
+                            profesorHelper.saveProfesor(profesor, uAS);
                             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido actualizado de manera correcta.");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                             profesor = new Profesor();
                         }
-
                     }
 
                 } else {
@@ -106,6 +104,28 @@ public class ProfesorBeanUI implements Serializable {
             PrimeFaces.current().dialog().showMessageDynamic(message);
         }
 
+    }
+
+    public List<Unidadaprendizaje> regresarUnidadesSeleccionadas(String seleccionados) {
+        List<Unidadaprendizaje> convertidos = new ArrayList<Unidadaprendizaje>();
+        boolean bandera = false;
+        if (seleccionados.contains(" ") || seleccionados.matches("[A-Z]")) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Unidades de aprendizaje", "Haz ingresado mal la informacion de las unidades");
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+        } else {
+            String[] separados = seleccionados.split(",");
+            for (String separado : separados) {
+                for (Unidadaprendizaje unidad : unidades) {
+                    if (unidad.getIdUnidadAprendizaje() == Integer.parseInt(separado)) {
+                        System.out.println(separado);
+                        convertidos.add(unidad);
+                        bandera = true;
+                    }
+                }
+                //convertidos.add(new Unidadaprendizaje(seleccionado.getIdUA(), seleccionado.getIdUnidadAprendizaje(), seleccionado.getNombre(), seleccionado.getHorasClase(), seleccionado.getHorasTaller(), seleccionado.getHorasLaboratorio()));
+            }
+        }
+        return convertidos;
     }
 
     public void eliminar(Profesor pAux) {
@@ -126,20 +146,20 @@ public class ProfesorBeanUI implements Serializable {
         this.profesor = profesor;
     }
 
-    public List<Unidadaprendizaje> getuSeleccionadas() {
-        return uSeleccionadas;
-    }
-
-    public void setuSeleccionadas(List<Unidadaprendizaje> uSeleccionadas) {
-        this.uSeleccionadas = uSeleccionadas;
-    }
-
     public List<Unidadaprendizaje> getUnidades() {
         return unidades;
     }
 
     public void setUnidades(List<Unidadaprendizaje> unidades) {
         this.unidades = unidades;
+    }
+
+    public String getSeleccionarUnidades() {
+        return seleccionarUnidades;
+    }
+
+    public void setSeleccionarUnidades(String seleccionarUnidades) {
+        this.seleccionarUnidades = seleccionarUnidades;
     }
 
     public List<Profesorimparteunidad> getImpartidas() {

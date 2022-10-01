@@ -109,14 +109,9 @@
                             <div class="rfc">
                                 <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                 <br></br>
-                                <p:selectManyMenu id="unidades" value="#{profesorBeanUI.uSeleccionadas}" var="u" converter="#{unidad}" showCheckbox="true" styleClass="manymenu-advanced">
-                                    <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{unidad}" itemValue="#{unidad}"/>
-                                    <p:column>
-                                        <p:outputLabel value="#{unidad.idUnidadAprendizaje} - #{unidad.nombre}"/>
-                                    </p:column>
-                                </p:selectManyMenu>
+                                <p:inputText class="" placeholder="Separar las unidades por una ," required="true" requiredMessage="Favor de ingresar minimo una unidad de aprendizaje" value="#{profesorBeanUI.seleccionarUnidades}"/>
                             </div>
-                            <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar()}" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"/>
+                            <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar}" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"/>
                         </p:panel>
                     </h:form>
                 </p:dialog>
