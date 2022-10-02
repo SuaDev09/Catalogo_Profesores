@@ -39,12 +39,8 @@ public class ProfesorBeanUI implements Serializable {
     private List<Unidadaprendizaje> seleccionarUnidades;
     private List<Unidadaprendizaje> unidades;
     private List<Profesorimparteunidad> impartidas;
-    private Unidadaprendizaje uA1 = new Unidadaprendizaje(26, 11717, "Fisica Diferencial", 19, 20, 10);
-    private Unidadaprendizaje uA2 = new Unidadaprendizaje(17, 321, "ads", 2, 1, 1);
-    List<Unidadaprendizaje> uAS;
 
     public ProfesorBeanUI() {
-        uAS = new ArrayList();
         profesorHelper = new ProfesorHelper();
         unidadHelper = new UnidadAprendizajeHelper();
     }
@@ -59,11 +55,6 @@ public class ProfesorBeanUI implements Serializable {
     }
 
     public void agregar() throws IOException {
-        uAS.add(uA1);
-        uAS.add(uA2);
-        for (Unidadaprendizaje seleccionarUnidade : seleccionarUnidades) {
-            System.out.println("HOla mundo ->>>> " + seleccionarUnidade.toString() + "<<<--- " + seleccionarUnidade.toString() + " === " + seleccionarUnidade);
-        }
         String mensaje = rfcValido(profesor.getRfc());
         if (!unidadHelper.getUnidades().isEmpty()) {
             if (!mensaje.equals("")) {
@@ -71,30 +62,26 @@ public class ProfesorBeanUI implements Serializable {
                 PrimeFaces.current().dialog().showMessageDynamic(message);
             } else {
                 if (!seleccionarUnidades.isEmpty()) {
-                    if (profesor.getIdP() == null) {
-                        if (validarID(profesor.getIdProfesor()) == true) {
-                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
+                    if (validarID(profesor.getIdProfesor()) == true) {
+                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
+                        PrimeFaces.current().dialog().showMessageDynamic(message);
+                    } else {
+                        if (profesor.getIdP() != null) {
+                            editar(profesor, seleccionarUnidades);
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido actualizado de manera exitosa.");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
+                            profesor = new Profesor();
+                            seleccionarUnidades.clear();
                         } else {
                             profesor.setIdP(0);
                             profesorHelper.saveProfesor(profesor, seleccionarUnidades);
-                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
+                            seleccionarUnidades.clear();
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido registrado de manera exitosa.");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                             profesor = new Profesor();
                         }
-
-                    } else {
-                        if (validarID(profesor.getIdProfesor())) {
-                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
-                            PrimeFaces.current().dialog().showMessageDynamic(message);
-                        } else {
-                            profesorHelper.saveProfesor(profesor, uAS);
-                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido actualizado de manera correcta.");
-                            PrimeFaces.current().dialog().showMessageDynamic(message);
-                            profesor = new Profesor();
-                        }
+                        PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
                     }
-
                 } else {
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No has asignado unidades de aprendizaje al profesor.");
                     PrimeFaces.current().dialog().showMessageDynamic(message);
@@ -108,36 +95,26 @@ public class ProfesorBeanUI implements Serializable {
 
     }
 
-    public List<Unidadaprendizaje> regresarUnidadesSeleccionadas(String seleccionados) {
-        List<Unidadaprendizaje> convertidos = new ArrayList<Unidadaprendizaje>();
-        boolean bandera = false;
-        if (seleccionados.contains(" ") || seleccionados.matches("[A-Z]")) {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Unidades de aprendizaje", "Haz ingresado mal la informacion de las unidades");
-            PrimeFaces.current().dialog().showMessageDynamic(message);
-        } else {
-            String[] separados = seleccionados.split(",");
-            for (String separado : separados) {
-                for (Unidadaprendizaje unidad : unidades) {
-                    if (unidad.getIdUnidadAprendizaje() == Integer.parseInt(separado)) {
-                        System.out.println(separado);
-                        convertidos.add(unidad);
-                        bandera = true;
-                    }
-                }
-                //convertidos.add(new Unidadaprendizaje(seleccionado.getIdUA(), seleccionado.getIdUnidadAprendizaje(), seleccionado.getNombre(), seleccionado.getHorasClase(), seleccionado.getHorasTaller(), seleccionado.getHorasLaboratorio()));
-            }
-        }
-        return convertidos;
+    public void editar(Profesor pAux, List<Unidadaprendizaje> uA) {
+        profesorHelper.updateProfesor(pAux, uA);
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido actualizado de manera exitosa.");
+        PrimeFaces.current().dialog().showMessageDynamic(message);
+        PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
     }
 
     public void eliminar(Profesor pAux) {
         profesorHelper.deleteProfesor(pAux);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido eliminado de manera exitosa.");
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor haa sido eliminado de manera exitosa.");
         PrimeFaces.current().dialog().showMessageDynamic(message);
+        PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
     }
 
     public List<Profesor> obtenerProfesores() {
         return profesorHelper.getProfesores();
+    }
+
+    public void nuevoProfesor() {
+        this.profesor = new Profesor();
     }
 
     public Profesor getProfesor() {
@@ -162,7 +139,7 @@ public class ProfesorBeanUI implements Serializable {
 
     public void setSeleccionarUnidades(List<Unidadaprendizaje> seleccionarUnidades) {
         this.seleccionarUnidades = seleccionarUnidades;
-    }    
+    }
 
     public List<Profesorimparteunidad> getImpartidas() {
         return impartidas;
@@ -172,22 +149,11 @@ public class ProfesorBeanUI implements Serializable {
         this.impartidas = impartidas;
     }
 
+    //Metodos
     public boolean validarID(int id) {
         boolean bandera = false;
         for (Profesor profesor : profesorHelper.getProfesores()) {
             if (profesor.getIdProfesor() == id) {
-                bandera = true;
-                break;
-            }
-        }
-
-        return bandera;
-    }
-
-    public boolean validarPrimary(int primary) {
-        boolean bandera = false;
-        for (Profesor profesor : profesorHelper.getProfesores()) {
-            if (profesor.getIdP() == primary) {
                 bandera = true;
                 break;
             }

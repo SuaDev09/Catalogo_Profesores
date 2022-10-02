@@ -59,7 +59,7 @@
 
                                 <f:facet name="header">
                                     <div class="d-flex flex-row flex-wrap justify-content-around">
-                                        
+
                                         <div>
                                             <h:form>
                                                 <p:commandButton value="Registrar Unidad de aprendizaje" type="button" onclick="PF('dlg1').show();" />
@@ -94,6 +94,7 @@
                         </h:form>
 
                     </div>
+
                     <p:dialog header="Profesores" widgetVar="dlg2" minHeight="100" draggable="false">
                         <h:form id="profesoresData">
                             <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.profesorimparteunidadList}">
