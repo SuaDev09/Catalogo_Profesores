@@ -106,10 +106,18 @@
                                 <br></br>
                                 <p:inputText  class="" placeholder="EJ: a34dfsdf" required="true" requiredMessage="Favor de ingresar el RFC" value="#{profesorBeanUI.profesor.rfc}"/>
                             </div>
-                            <div class="rfc">
+                            <!-- <div class="rfc">
                                 <p:outputLabel styleClass="" value="Unidades de aprendizaje:"/>
                                 <br></br>
                                 <p:inputText class="" placeholder="Separar las unidades por una ," required="true" requiredMessage="Favor de ingresar minimo una unidad de aprendizaje" value="#{profesorBeanUI.seleccionarUnidades}"/>
+                            </div> -->
+                            <div>
+                                <p:selectManyMenu id="unidades" value="#{profesorBeanUI.seleccionarUnidades}" converter="unidadConverter" var="u" showCheckbox="true" styleClass="manymenu-advanced">
+                                    <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{u.nombre}" itemValue="#{u.idUA}"/>
+                                    <p:column>
+                                        <h:outputText value="#{u.idUA}"/>
+                                    </p:column>
+                                </p:selectManyMenu>
                             </div>
                             <p:commandButton  class="btn btn-success" value="Registrar Profesor" actionListener="#{profesorBeanUI.agregar}" update=":profesoresData:ProfesoresTabla :messages :form:panelForm" resetValues="true"/>
                         </p:panel>

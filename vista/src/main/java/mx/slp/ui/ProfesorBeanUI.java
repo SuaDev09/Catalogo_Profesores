@@ -36,7 +36,7 @@ public class ProfesorBeanUI implements Serializable {
     private ProfesorHelper profesorHelper;
     private UnidadAprendizajeHelper unidadHelper;
     private Profesor profesor;
-    private String seleccionarUnidades;
+    private List<Unidadaprendizaje> seleccionarUnidades;
     private List<Unidadaprendizaje> unidades;
     private List<Profesorimparteunidad> impartidas;
     private Unidadaprendizaje uA1 = new Unidadaprendizaje(26, 11717, "Fisica Diferencial", 19, 20, 10);
@@ -61,7 +61,9 @@ public class ProfesorBeanUI implements Serializable {
     public void agregar() throws IOException {
         uAS.add(uA1);
         uAS.add(uA2);
-
+        for (Unidadaprendizaje seleccionarUnidade : seleccionarUnidades) {
+            System.out.println("HOla mundo ->>>> " + seleccionarUnidade.toString() + "<<<--- " + seleccionarUnidade.toString() + " === " + seleccionarUnidade);
+        }
         String mensaje = rfcValido(profesor.getRfc());
         if (!unidadHelper.getUnidades().isEmpty()) {
             if (!mensaje.equals("")) {
@@ -75,7 +77,7 @@ public class ProfesorBeanUI implements Serializable {
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                         } else {
                             profesor.setIdP(0);
-                            profesorHelper.saveProfesor(profesor, uAS);
+                            profesorHelper.saveProfesor(profesor, seleccionarUnidades);
                             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor a sido registrado de manera exitosa.");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                             profesor = new Profesor();
@@ -154,13 +156,13 @@ public class ProfesorBeanUI implements Serializable {
         this.unidades = unidades;
     }
 
-    public String getSeleccionarUnidades() {
+    public List<Unidadaprendizaje> getSeleccionarUnidades() {
         return seleccionarUnidades;
     }
 
-    public void setSeleccionarUnidades(String seleccionarUnidades) {
+    public void setSeleccionarUnidades(List<Unidadaprendizaje> seleccionarUnidades) {
         this.seleccionarUnidades = seleccionarUnidades;
-    }
+    }    
 
     public List<Profesorimparteunidad> getImpartidas() {
         return impartidas;
