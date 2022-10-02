@@ -6,6 +6,7 @@
 package mx.slp.integracion;
 
 import mx.slp.facade.FacadeProfesor;
+import mx.slp.facade.FacadeProfesorImparte;
 import mx.slp.facade.FacadeUnidadaprendizaje;
 import mx.slp.facade.FacadeUsuario;
 
@@ -17,7 +18,8 @@ public class ServiceFacadeLocator {
     private static FacadeProfesor facadeProfesor;
     private static FacadeUnidadaprendizaje facadeUnidad;
     private static FacadeUsuario facadeUsuario;
- 
+    private static FacadeProfesorImparte facadeAsignacion;
+    
     public static FacadeProfesor getInstanceFacadeProfesor(){
         if(facadeProfesor == null) {
             facadeProfesor = new FacadeProfesor();
@@ -42,6 +44,15 @@ public class ServiceFacadeLocator {
             return facadeUsuario;
         } else {
             return facadeUsuario;
+        }
+    }
+    
+    public static FacadeProfesorImparte getInstanceFacadeAsignacion(){
+        if(facadeAsignacion == null){
+            facadeAsignacion = new FacadeProfesorImparte();
+            return facadeAsignacion;
+        } else {
+            return facadeAsignacion;
         }
     }
 }

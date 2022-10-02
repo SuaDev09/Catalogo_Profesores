@@ -51,12 +51,21 @@
                                 <h:outputText value="#{profesor.rfc}" />
                             </p:column>
 
+                            <p:column headerText="Unidades de aprendizaje"  style="text-align: center;">
+                                <p:commandButton update=":dialogs:profesorDetail" oncomplete="PF('profesorDialog').show()"
+                                                 icon="pi pi-eye" title="View">
+                                    <f:setPropertyActionListener value="#{profesor}"
+                                                                 target="#{profesor.profesorimparteunidadList}"/>
+                                </p:commandButton>
+                            </p:column>
+
                             <p:column exportable="false">
-                                <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-profesor-content"
-                                                 oncomplete="PF('manageProfesorDialog').show()"
+
+                                <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-profesor-content"
+                                                 oncomplete="PF('editProfesorDialog').show()"
                                                  styleClass="edit-button rounded-button ui-button-success" process="@this">
                                     <f:setPropertyActionListener value="#{profesor}" target="#{profesorBeanUI.profesor}" />
-                                    <p:resetInput target=":dialogs:manage-profesor-content" />
+                                    <p:resetInput target=":dialogs:edit-profesor-content" />
                                 </p:commandButton>
                                 <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
                                                  oncomplete="PF('deleteProfesorDialog').show()">
@@ -68,7 +77,7 @@
                     </h:form>
 
                     <h:form id="dialogs">
-                        <p:dialog header="Datos del profesor" showEffect="fade" modal="true" widgetVar="manageProfesorDialog"
+                        <p:dialog header="Editar profesor" showEffect="fade" modal="true" widgetVar="manageProfesorDialog"
                                   responsive="true">
                             <p:outputPanel id="manage-profesor-content" class="ui-fluid">
                                 <p:outputPanel rendered="#{not empty profesorBeanUI.profesor}">
@@ -88,7 +97,7 @@
                                         <p:outputLabel for="apellido-materno">Apellido Materno</p:outputLabel>
                                         <p:inputText id="apellido-materno" value="#{profesorBeanUI.profesor.apellidoMaterno}" required="true" />
                                     </div>
-                                     <div class="field">
+                                    <div class="field">
                                         <p:outputLabel for="rfc">RFC</p:outputLabel>
                                         <p:inputText id="rfc" value="#{profesorBeanUI.profesor.rfc}" required="true" />
                                     </div>
@@ -124,9 +133,81 @@
                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
                                              icon="pi pi-times" />
                         </p:confirmDialog>
+
+                        <p:dialog header="Datos del profesor" showEffect="fade" modal="true" widgetVar="editProfesorDialog"
+                                  responsive="true">
+                            <p:outputPanel id="edit-profesor-content" class="ui-fluid">
+                                <p:outputPanel rendered="#{not empty profesorBeanUI.profesor}">
+                                    <div class="field">
+                                        <p:outputLabel for="id-profesor">Id del Profesor</p:outputLabel>
+                                        <p:inputText id="id-profesorEdit" value="#{profesorBeanUI.profesor.idProfesor}" required="true" />
+                                    </div>
+                                    <div class="field">
+                                        <p:outputLabel for="nombreEdit">Nombre</p:outputLabel>
+                                        <p:inputText id="nombreEdit" value="#{profesorBeanUI.profesor.nombre}" required="true" />
+                                    </div>
+                                    <div class="field">
+                                        <p:outputLabel for="apellido-paternoEdit">Apellido Paterno</p:outputLabel>
+                                        <p:inputText id="apellido-paternoEdit" value="#{profesorBeanUI.profesor.apellidoPaterno}" required="true" />
+                                    </div>
+                                    <div class="field">
+                                        <p:outputLabel for="apellido-maternoEdit">Apellido Materno</p:outputLabel>
+                                        <p:inputText id="apellido-maternoEdit" value="#{profesorBeanUI.profesor.apellidoMaterno}" required="true" />
+                                    </div>
+                                    <div class="field">
+                                        <p:outputLabel for="rfcEdit">RFC</p:outputLabel>
+                                        <p:inputText id="rfcEdit" value="#{profesorBeanUI.profesor.rfc}" required="true" />
+                                    </div>
+
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="Editar" icon="pi pi-check" actionListener="#{profesorBeanUI.editar(profesorBeanUI.profesor)}"
+                                                 update="edit-profesor-content" process="edit-profesor-content @this" />
+                                <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('editProfesorDialog').hide()"
+                                                 class="ui-button-secondary" type="button" />
+                            </f:facet>
+                        </p:dialog>
+
+                        <p:dialog header="Unidades de Aprendizaje asignadas al Profesor" widgetVar="profesorDialog" modal="true" showEffect="fade"
+                                  hideEffect="fade" resizable="false" responsive="true" width="80%">
+                            <p:dataTable  var="unidad" 
+                                          value="#{asignacionBeanUI.obtenerAsignacionesProfesor(profesorBeanUI.profesor)}" id="profesorDetail"
+                                          sortMode="single"
+                                          lazy="true"
+                                          style="width:80%; margin: 0 auto;"
+                                          >
+
+                                <p:column headerText="ID de la Unidad">
+                                    <h:outputText value="#{unidad.idU}" />
+                                </p:column>
+
+                                <p:column headerText="Nombre de la unidad">
+                                    <h:outputText value="#{unidad.nombre}" />
+                                </p:column>
+                                <p:column headerText="Horas Clase">
+                                    <h:outputText value="#{unidad.horasClase}" />
+                                </p:column>
+                                <p:column headerText="Horas Taller">
+                                    <h:outputText value="#{unidad.horasTaller}" />
+                                </p:column>
+                                <p:column headerText="Horas Laboratorio">
+                                    <h:outputText value="#{unidad.horasLaboratorio}" />
+                                </p:column>
+                                <p:column headerText="Acciones">
+                                    <h:form>
+                                        <p:commandButton update="messages" class="btn bi bi-people-fill" value="Profesores" oncomplete="PF('dlg2').show()" />
+                                    </h:form>
+                                </p:column>
+                            </p:dataTable>
+                        </p:dialog>
                     </h:form>
+
                 </div>
             </ui:define>
         </ui:composition>>
     </h:body>        
 </html>
+
+<!--Tengo que mostrar los datos de los profesores en las unidades de aprendizaje-->

@@ -1,8 +1,10 @@
 mx\slp\delegate\DelegateProfesor.class
+mx\slp\delegate\DelegateProfesorImparte.class
 mx\slp\facade\FacadeUsuario.class
 mx\slp\delegate\DelegateUnidadaprendizaje.class
 mx\slp\facade\FacadeUnidadaprendizaje.class
 mx\slp\delegate\DelegateUsuario.class
+mx\slp\facade\FacadeProfesorImparte.class
 test\test.class
 mx\slp\integracion\ServiceFacadeLocator.class
 mx\slp\facade\FacadeProfesor.class

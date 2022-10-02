@@ -59,13 +59,11 @@
 
                                 <f:facet name="header">
                                     <div class="d-flex flex-row flex-wrap justify-content-around">
-
                                         <div>
                                             <h:form>
                                                 <p:commandButton value="Registrar Unidad de aprendizaje" type="button" onclick="PF('dlg1').show();" />
                                             </h:form>
                                         </div>
-
                                     </div>
                                 </f:facet>
 
@@ -90,18 +88,25 @@
                                         <p:commandButton update="messages" class="btn bi bi-people-fill" value="Profesores" oncomplete="PF('dlg2').show()" />
                                     </h:form>
                                 </p:column>
+                                <p:column headerText="Profesores"  style="text-align: center;">
+                                <p:commandButton update=":profesoresData:ProfesoresTabla" oncomplete="PF('dlg2').show()"
+                                                 icon="pi pi-eye" title="View">
+                                    <f:setPropertyActionListener value="#{unidad}"
+                                                                 target="#{unidadAprendizajeBeanUI.unidadAprendizaje.profesorimparteunidadList}"/>
+                                </p:commandButton>
+                            </p:column>
                             </p:dataTable>
                         </h:form>
 
                     </div>
 
-                    <p:dialog header="Profesores" widgetVar="dlg2" minHeight="100" draggable="false">
+                    <p:dialog header="Profesores" widgetVar="dlg2" minHeight="100" draggable="false" responsive="true" width="80%">
                         <h:form id="profesoresData">
-                            <p:dataTable var="profesor" styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.profesorimparteunidadList}">
+                            <p:dataTable  styleClass="table table-striped" sortMode="single" id="ProfesoresTabla" value="#{unidadAprendizajeBeanUI.unidadAprendizaje.profesorimparteunidadList}" var="profesor">
                                 <p:column headerText="ID de profesor">
                                     <h:outputText value="#{profesor.idP.idProfesor}" />
                                 </p:column>
-                                <p:column headerText="Nombre" sortBy="#{profesor.idP.nombre}">
+                                <p:column headerText="Nombre">
                                     <h:outputText value="#{profesor.idP.nombre}" />
                                 </p:column>
                                 <p:column headerText="Apellido Paterno">

@@ -27,7 +27,6 @@ public class UnidadConverter implements Converter {
         return e;
     }
     
-    @Override
     public String getAsString(FacesContext fc, UIComponent comp, Object value) {
         return ((Unidadaprendizaje) value).getIdUA().toString();
     }

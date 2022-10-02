@@ -38,6 +38,7 @@ public class ProfesorBeanUI implements Serializable {
     private Profesor profesor;
     private List<Unidadaprendizaje> seleccionarUnidades;
     private List<Unidadaprendizaje> unidades;
+    private List<Unidadaprendizaje> unidadesImpartidas;
     private List<Profesorimparteunidad> impartidas;
 
     public ProfesorBeanUI() {
@@ -52,6 +53,7 @@ public class ProfesorBeanUI implements Serializable {
     public void init() {
         profesor = new Profesor();
         unidades = unidadHelper.getUnidades();
+        
     }
 
     public void agregar() throws IOException {
@@ -62,26 +64,27 @@ public class ProfesorBeanUI implements Serializable {
                 PrimeFaces.current().dialog().showMessageDynamic(message);
             } else {
                 if (!seleccionarUnidades.isEmpty()) {
-                    if (validarID(profesor.getIdProfesor()) == true) {
-                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya a sido ingresado");
-                        PrimeFaces.current().dialog().showMessageDynamic(message);
-                    } else {
-                        if (profesor.getIdP() != null) {
-                            editar(profesor, seleccionarUnidades);
+                    if (profesor.getIdP() != null) {
+                        if (validarEditID(profesor.getIdP(), profesor.getIdProfesor())) {
+                            editar(profesor);
                             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido actualizado de manera exitosa.");
                             PrimeFaces.current().dialog().showMessageDynamic(message);
                             profesor = new Profesor();
                             seleccionarUnidades.clear();
-                        } else {
-                            profesor.setIdP(0);
-                            profesorHelper.saveProfesor(profesor, seleccionarUnidades);
-                            seleccionarUnidades.clear();
-                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido registrado de manera exitosa.");
-                            PrimeFaces.current().dialog().showMessageDynamic(message);
-                            profesor = new Profesor();
                         }
-                        PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
+                    } else if (validarID(profesor.getIdProfesor()) == true) {
+                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error ID profesor", "El ID del profesor ya ha sido ingresado");
+                        PrimeFaces.current().dialog().showMessageDynamic(message);
+                    } else {
+                        profesor.setIdP(0);
+                        profesorHelper.saveProfesor(profesor, seleccionarUnidades);
+                        seleccionarUnidades.clear();
+                        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido registrado de manera exitosa.");
+                        PrimeFaces.current().dialog().showMessageDynamic(message);
+                        profesor = new Profesor();
                     }
+                    PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
+
                 } else {
                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No has asignado unidades de aprendizaje al profesor.");
                     PrimeFaces.current().dialog().showMessageDynamic(message);
@@ -95,8 +98,8 @@ public class ProfesorBeanUI implements Serializable {
 
     }
 
-    public void editar(Profesor pAux, List<Unidadaprendizaje> uA) {
-        profesorHelper.updateProfesor(pAux, uA);
+    public void editar(Profesor pAux) {
+        profesorHelper.updateProfesor(pAux);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido actualizado de manera exitosa.");
         PrimeFaces.current().dialog().showMessageDynamic(message);
         PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
@@ -104,7 +107,7 @@ public class ProfesorBeanUI implements Serializable {
 
     public void eliminar(Profesor pAux) {
         profesorHelper.deleteProfesor(pAux);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor haa sido eliminado de manera exitosa.");
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor", "El profesor ha sido eliminado de manera exitosa.");
         PrimeFaces.current().dialog().showMessageDynamic(message);
         PrimeFaces.current().ajax().update("form:messages", "form:dt-profesores");
     }
@@ -112,11 +115,35 @@ public class ProfesorBeanUI implements Serializable {
     public List<Profesor> obtenerProfesores() {
         return profesorHelper.getProfesores();
     }
+    
+    public List<Unidadaprendizaje> getUnidadesImpartidas() {
+        if (!profesor.getProfesorimparteunidadList().isEmpty()) {
+            for (Profesorimparteunidad seleccionarUnidade : profesor.getProfesorimparteunidadList()) {
+                unidadesImpartidas.add(seleccionarUnidade.getIdUA());
+            }
+        }
 
-    public void nuevoProfesor() {
-        this.profesor = new Profesor();
+        return unidadesImpartidas;
     }
 
+    public List<Profesorimparteunidad> getAsignadas(Profesor profesor) {
+        List<Profesorimparteunidad> unidadesAsignadas = new ArrayList();
+
+        if (!profesor.getProfesorimparteunidadList().isEmpty()) { 
+            for (Profesorimparteunidad profesorimparteunidad : profesor.getProfesorimparteunidadList()) {
+                unidadesAsignadas.add(profesorimparteunidad);
+            }
+        }
+
+        return unidadesAsignadas;
+    }
+
+    public void setUnidadesImpartidas(List<Unidadaprendizaje> unidadesImpartidas) {
+        this.unidadesImpartidas = unidadesImpartidas;
+    }
+    public void nuevoProfesor(){
+        this.profesor = new Profesor();
+    }
     public Profesor getProfesor() {
         return profesor;
     }
@@ -154,6 +181,18 @@ public class ProfesorBeanUI implements Serializable {
         boolean bandera = false;
         for (Profesor profesor : profesorHelper.getProfesores()) {
             if (profesor.getIdProfesor() == id) {
+                bandera = true;
+                break;
+            }
+        }
+
+        return bandera;
+    }
+
+    public boolean validarEditID(int idP, int idProfesor) {
+        boolean bandera = false;
+        for (Profesor profesor : profesorHelper.getProfesores()) {
+            if (profesor.getIdProfesor() == idProfesor && profesor.getIdProfesor() == idP) {
                 bandera = true;
                 break;
             }
