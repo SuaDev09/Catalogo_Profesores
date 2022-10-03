@@ -23,7 +23,7 @@ public class UnidadConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent comp, String value) {
-        Unidadaprendizaje e = unidadHelper.getUnidades().get(Integer.parseInt(value));
+        Unidadaprendizaje e = unidadHelper.getUnidades().get(Integer.parseInt(value) - 1);
         return e;
     }
     

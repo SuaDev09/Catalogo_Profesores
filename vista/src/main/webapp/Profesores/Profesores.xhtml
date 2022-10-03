@@ -51,14 +51,6 @@
                                 <h:outputText value="#{profesor.rfc}" />
                             </p:column>
 
-                            <p:column headerText="Unidades de aprendizaje"  style="text-align: center;">
-                                <p:commandButton update=":dialogs:profesorDetail" oncomplete="PF('profesorDialog').show()"
-                                                 icon="pi pi-eye" title="View">
-                                    <f:setPropertyActionListener value="#{profesor}"
-                                                                 target="#{profesor.profesorimparteunidadList}"/>
-                                </p:commandButton>
-                            </p:column>
-
                             <p:column exportable="false">
 
                                 <p:commandButton icon="pi pi-pencil" update=":dialogs:edit-profesor-content"
@@ -105,7 +97,7 @@
                                         <p:selectManyMenu id="unidades" value="#{profesorBeanUI.seleccionarUnidades}" converter="unidadConverter" var="u" showCheckbox="true" styleClass="manymenu-advanced">
                                             <f:selectItems value="#{profesorBeanUI.unidades}" var="unidad" itemLabel="#{u.nombre}" itemValue="#{u.idUA}"/>
                                             <p:column>
-                                                <h:outputText value="#{u.idUA}"/>
+                                                <h:outputText value="#{u.idUnidadAprendizaje} - #{u.nombre}"/>
                                             </p:column>
                                         </p:selectManyMenu>
                                     </div>
@@ -170,38 +162,6 @@
                             </f:facet>
                         </p:dialog>
 
-                        <p:dialog header="Unidades de Aprendizaje asignadas al Profesor" widgetVar="profesorDialog" modal="true" showEffect="fade"
-                                  hideEffect="fade" resizable="false" responsive="true" width="80%">
-                            <p:dataTable  var="unidad" 
-                                          value="#{asignacionBeanUI.obtenerAsignacionesProfesor(profesorBeanUI.profesor)}" id="profesorDetail"
-                                          sortMode="single"
-                                          lazy="true"
-                                          style="width:80%; margin: 0 auto;"
-                                          >
-
-                                <p:column headerText="ID de la Unidad">
-                                    <h:outputText value="#{unidad.idU}" />
-                                </p:column>
-
-                                <p:column headerText="Nombre de la unidad">
-                                    <h:outputText value="#{unidad.nombre}" />
-                                </p:column>
-                                <p:column headerText="Horas Clase">
-                                    <h:outputText value="#{unidad.horasClase}" />
-                                </p:column>
-                                <p:column headerText="Horas Taller">
-                                    <h:outputText value="#{unidad.horasTaller}" />
-                                </p:column>
-                                <p:column headerText="Horas Laboratorio">
-                                    <h:outputText value="#{unidad.horasLaboratorio}" />
-                                </p:column>
-                                <p:column headerText="Acciones">
-                                    <h:form>
-                                        <p:commandButton update="messages" class="btn bi bi-people-fill" value="Profesores" oncomplete="PF('dlg2').show()" />
-                                    </h:form>
-                                </p:column>
-                            </p:dataTable>
-                        </p:dialog>
                     </h:form>
 
                 </div>
